@@ -3,100 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahad Ali Lelin | Portfolio</title>
+    <title>Ahed Ali Lelin - Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">Ahad<span>Lelin</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">Ahed<span>Lelin.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Hero / Home Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h3>Welcome to my world</h3>
-            <h1>Hi, I'm <span class="highlight">Ahad Ali Lelin</span></h1>
-            <h2>Security Professional & Tech Enthusiast</h2>
-            <p>Specializing in surveillance operations, central control management, IT support, and data analytics. Passionate about technical operations and creative arts.</p>
-            <div class="social-icons">
-                <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <!-- Home / Hero Section -->
+    <section id="home" class="home">
+        <div class="home-content">
+            <h3>Hello, It's Me</h3>
+            <h1>Ahad Ali Lelin</h1>
+            <h3>And I'm a <span class="multiple-text">Security Professional & Tech Specialist</span></h3>
+            <p>Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
+            
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:lelin.ahad@example.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
-            <a href="#contact" class="btn">Get In Touch</a>
+
+            <a href="#contact" class="btn">Hire Me</a>
+        </div>
+
+        <div class="home-img">
+            <!-- আপনার ছবিটির নাম profile.jpg দিয়ে ফোল্ডারে রাখবেন -->
+            <img src="profile.jpg" alt="Ahed Ali Lelin">
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <div class="about-container">
-            <p>I am a dedicated Security Professional currently serving as a <strong>VSO (OP) at United Group</strong>. With a academic background in Economics, I combine analytical thinking with high-level technical skills in surveillance systems and IT infrastructure.</p>
-            <p>Outside of my technical career, I am a creative soul passionate about literature, poetry, and creative storytelling.</p>
+    <section id="about" class="about">
+        <div class="about-img">
+            <img src="profile.jpg" alt="Ahad Ali Lelin">
+        </div>
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>Security & Operations Professional</h3>
+            <p>I am Ahad Ali Lelin, currently working as a VSO (OP) at United Group. Holding a degree in Economics, I bridge the gap between business analytics and technical security operations. I manage large-scale surveillance setups monitoring 4,000+ IP cameras while handling data analysis and troubleshooting.</p>
+            <p>Additionally, I have a passion for creative writing, poetry, and modern video/media content creation.</p>
+            <a href="#contact" class="btn">Contact Me</a>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section bg-alt">
-        <h2 class="section-title">Professional <span>Experience</span></h2>
-        <div class="card-grid">
-            <div class="card">
-                <i class="fa-solid fa-shield-halved card-icon"></i>
-                <h3>VSO (Operations)</h3>
-                <h4>United Group</h4>
-                <p>Managing central control room operations monitoring 4,000+ IP cameras, leading emergency response protocols, and ensuring physical & digital safety assets.</p>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="heading">My <span>Services & Expertise</span></h2>
+        
+        <div class="services-container">
+            <div class="services-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Surveillance & Security Ops</h3>
+                <p>Central control room management, monitoring thousands of CCTV/IP cameras, and protocols execution.</p>
             </div>
-            <div class="card">
-                <i class="fa-solid fa-chart-line card-icon"></i>
-                <h3>Data Analytics & Modeling</h3>
-                <h4>Academic & Projects</h4>
-                <p>Performing predictive trendline modeling, spreadsheet data analytics, and operational tracking to optimize decision-making processes.</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-headset card-icon"></i>
-                <h3>IT Support & Digital Marketing</h3>
-                <h4>Technical Operations</h4>
-                <p>Providing technical troubleshooting, hardware/software maintenance, and strategic B2B digital media management.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <h2 class="section-title">Key <span>Skills</span></h2>
-        <div class="skills-container">
-            <div class="skill-box">Surveillance & Control Systems (CCTV / IP Cameras)</div>
-            <div class="skill-box">Data Analytics & Spreadsheet Modeling</div>
-            <div class="skill-box">IT Support & System Troubleshooting</div>
-            <div class="skill-box">Operations & Team Leadership</div>
-            <div class="skill-box">B2B Digital Marketing</div>
-            <div class="skill-box">Creative Writing & Content Creation</div>
+            <div class="services-box">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3>Data Analytics</h3>
+                <p>Predictive trendline modeling, spreadsheet management, and analytical operational reporting.</p>
+            </div>
+
+            <div class="services-box">
+                <i class="fa-solid fa-headset"></i>
+                <h3>IT Support & Marketing</h3>
+                <p>System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section bg-alt">
-        <h2 class="section-title">Contact <span>Me</span></h2>
-        <div class="contact-container">
-            <p><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</p>
-            <p><i class="fa-solid fa-envelope"></i> ahad.lelin@example.com</p>
-            <p><i class="fa-solid fa-briefcase"></i> Open for professional consultations & collaborations.</p>
+    <section id="contact" class="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+        
+        <div class="contact-info">
+            <div class="info-box">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>lalin1622214@gmail.com</p>
+            </div>
+            <div class="info-box">
+                <i class="fa-solid fa-phone"></i>
+                <h3>Phone / WhatsApp</h3>
+                <p>+880 1700-000000</p>
+            </div>
+            <div class="info-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Location</h3>
+                <p>Dhaka, Bangladesh</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Ahad Ali Lelin. Built with GitHub Pages.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2026 by Ahed Ali Lelin | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
+        </div>
     </footer>
 
 </body>
