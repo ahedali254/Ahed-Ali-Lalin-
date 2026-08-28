@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -19,18 +25,19 @@
             pointer-events: none;
         }
 
-        /* HEADER & NAVBAR PERFECT FIX */
+        /* HEADER & NAVBAR FIX (সব বামে পাশাপাশি আনার স্টাইল) */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.2rem 7%;
+            padding: 1.2rem 5%;
             background: rgba(5, 11, 20, 0.9);
             backdrop-filter: blur(10px);
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* বাম থেকে শুরু হবে */
             align-items: center;
+            gap: 3.5rem; /* লোগো এবং নেভবারের মাঝের দূরত্ব */
             z-index: 100;
         }
 
@@ -39,26 +46,26 @@
             color: #fff;
             text-decoration: none;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .logo span {
             color: #00f0ff;
         }
 
-        /* নেভবার লিংকগুলো ডানপাশে চাপিয়ে দেওয়ার স্টাইল */
         .navbar {
             display: flex;
             align-items: center;
-            gap: 2rem; /* মার্জিনের বদলে ফিক্সড গ্যাপ */
+            gap: 2rem; /* লিংকগুলোর নিজেদের মাঝের দূরত্ব */
         }
 
         .navbar a {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #ffffff !important;
             text-decoration: none;
             font-weight: 500;
-            margin-left: 0 !important;
             transition: .3s;
+            white-space: nowrap;
         }
 
         .navbar a:hover,
@@ -106,7 +113,7 @@
             color: #e0e0e0;
         }
 
-        /* Bullet Points Fix */
+        /* Bullet Points & Paragraph Formatting Fix */
         .services-box p, .about-content p {
             white-space: pre-line;
             text-align: left;
@@ -148,6 +155,7 @@
             <div id="audio-box" class="audio-container" style="display: none;">
                 <audio id="audio-player" controls>
                     <source id="audio-source" src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
                 </audio>
             </div>
 
@@ -211,27 +219,22 @@
         const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
 
         function parseGoogleCSV(text) {
-            const p = new RegExp(
-                '("(?:[^"]|"")*"|[^,\r\n]*)(,|\r\n|\n|\r)', 'gi'
-            );
-            let row = [];
+            const lines = text.split(/\r\n|\n/);
             const result = {};
-            let match = null;
 
-            while ((match = p.exec(text)) !== null) {
-                let matchedValue = match[1];
-                if (matchedValue.startsWith('"') && matchedValue.endsWith('"')) {
-                    matchedValue = matchedValue.substring(1, matchedValue.length - 1).replace(/""/g, '"');
-                }
-                row.push(matchedValue.trim());
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                const firstCommaIdx = line.indexOf(',');
+                if (firstCommaIdx !== -1) {
+                    let key = line.substring(0, firstCommaIdx).trim().toLowerCase();
+                    let val = line.substring(firstCommaIdx + 1).trim();
 
-                if (match[2] !== ',') {
-                    if (row.length >= 2 && row[0]) {
-                        result[row[0]] = row.slice(1).join(',').trim();
+                    if (val.startsWith('"') && val.endsWith('"')) {
+                        val = val.substring(1, val.length - 1).replace(/""/g, '"');
                     }
-                    row = [];
+                    result[key] = val;
                 }
-            }
+            });
             return result;
         }
 
@@ -242,7 +245,16 @@
 
                 const updateText = (id, val) => {
                     const el = document.getElementById(id);
-                    if (el && val && val.length > 0) el.innerText = val;
+                    if (el && val && val.trim().length > 0) {
+                        el.innerText = val;
+                    }
+                };
+
+                const updateLink = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val && val.trim().length > 0) {
+                        el.href = val;
+                    }
                 };
 
                 updateText('user-name', content.name);
@@ -258,30 +270,32 @@
                     if (emailLink) emailLink.href = `mailto:${content.email}`;
                 }
 
-                if (content.facebook) document.getElementById('facebook-link').href = content.facebook;
-                if (content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
-                if (content.github) document.getElementById('github-link').href = content.github;
+                updateLink('facebook-link', content.facebook);
+                updateLink('linkedin-link', content.linkedin);
+                updateLink('github-link', content.github);
 
                 updateText('service1-title', content.service1_title);
                 updateText('service1-desc', content.service1_desc);
-
                 updateText('service2-title', content.service2_title);
                 updateText('service2-desc', content.service2_desc);
-
                 updateText('service3-title', content.service3_title);
                 updateText('service3-desc', content.service3_desc);
 
                 if (content.profile_image) {
                     let imageLink = content.profile_image;
                     if (imageLink.includes('drive.google.com')) {
-                        const fileId = imageLink.split('/d/')[1].split('/')[0];
-                        imageLink = `https://lh3.googleusercontent.com/d/${fileId}`;
+                        const match = imageLink.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        if (match && match[1]) {
+                            imageLink = `https://lh3.googleusercontent.com/d/${match[1]}`;
+                        }
                     }
-                    document.getElementById('profile-img-1').src = imageLink;
-                    document.getElementById('profile-img-2').src = imageLink;
+                    const img1 = document.getElementById('profile-img-1');
+                    const img2 = document.getElementById('profile-img-2');
+                    if (img1) img1.src = imageLink;
+                    if (img2) img2.src = imageLink;
                 }
 
-                if (content.audio_url && content.audio_url.length > 5) {
+                if (content.audio_url && content.audio_url.trim().length > 5) {
                     const audioBox = document.getElementById('audio-box');
                     const audioSource = document.getElementById('audio-source');
                     const audioPlayer = document.getElementById('audio-player');
