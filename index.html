@@ -6,14 +6,47 @@
     <title>Ahed Ali Lelin - Portfolio</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- CSS Link -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #050b14;
+            pointer-events: none;
+        }
+
+        /* ছবির সাইজ নির্দিষ্ট করে দেওয়ার জন্য CSS */
+        .home-img img, .about-img img {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            object-fit: cover;
+        }
+
+        .audio-container {
+            margin-top: 2rem;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+        }
+    </style>
 </head>
 <body>
 
+    <canvas id="bg-canvas"></canvas>
+
     <!-- Header / Navbar -->
     <header class="header">
-        <a href="#" class="logo" id="user-name">AhadLelin.</a>
+        <a href="#" class="logo">Ahad<span id="logo-span">Lelin.</span></a>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
@@ -23,18 +56,14 @@
         </nav>
     </header>
 
-    <!-- Canvas for Particle Background -->
-    <canvas id="particle-canvas"></canvas>
-
     <!-- Home Section -->
     <section id="home" class="home">
         <div class="home-content">
             <h3>Hello, It's Me</h3>
-            <h1 id="user-name-hero">Ahad Ali Lelin</h1>
-            <h3><span id="user-hero-title">Security Professional & Tech Specialist</span></h3>
+            <h1 id="user-name">Ahed Ali Lelin</h1>
+            <h3><span id="user-hero-title">surveillance operations & Tech Specialist</span></h3>
             <p id="user-hero-desc">Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
-            <!-- Social Links -->
             <div class="social-media">
                 <a href="#" id="facebook-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" id="linkedin-link" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -42,30 +71,29 @@
                 <a href="#" id="email-link"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
-            <!-- Audio Player Box (Optional) -->
-            <div id="audio-box" style="display: none; margin-top: 15px;">
+            <div id="audio-box" class="audio-container" style="display: none;">
                 <audio id="audio-player" controls>
                     <source id="audio-source" src="" type="audio/mpeg">
-                    Your browser does not support the audio element.
                 </audio>
             </div>
 
+            <br>
             <a href="#contact" class="btn">Hire Me</a>
         </div>
 
         <div class="home-img">
-            <img id="profile-img-1" src="profile.jpg" alt="Profile Picture">
+            <img id="profile-img-1" src="profile.jpg" alt="Ahad Ali Lelin">
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about-img">
-            <img id="profile-img-2" src="profile.jpg" alt="About Picture">
+            <img id="profile-img-2" src="profile.jpg" alt="Ahed Ali Lelin">
         </div>
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
-            <p id="user-about-text">Loading about details...</p>
+            <p id="user-about-text">Loading...</p>
         </div>
     </section>
 
@@ -100,53 +128,44 @@
         <div class="contact-info">
             <p><i class="fa-solid fa-envelope"></i> Email: <span id="user-email">lelin1622214@gmail.com</span></p>
             <p><i class="fa-solid fa-phone"></i> Phone: <span id="user-phone">+880 1620090273</span></p>
+            <p><i class="fa-solid fa-location-dot"></i> Location: <span id="user-location">Dhaka, Bangladesh</span></p>
         </div>
     </section>
 
     <!-- Google Sheet Data Sync Script -->
     <script>
-        // আপনার প্রকাশিত গুগল শিটের CSV লিংকটি নিচে দেওয়া আছে
-        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTE2kF8p6d7S_7S_6_Example/pub?gid=0&single=true&output=csv';
-
-        function parseCSV(csvText) {
-            const lines = csvText.split('\n');
-            const data = {};
-            lines.forEach(line => {
-                const parts = line.split(',');
-                if (parts.length >= 2) {
-                    const key = parts[0].trim();
-                    const value = parts.slice(1).join(',').trim().replace(/^"(.*)"$/, '$1');
-                    data[key] = value;
-                }
-            });
-            return data;
-        }
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
 
         fetch(sheetURL)
             .then(response => response.text())
-            .then(csvText => {
-                const content = parseCSV(csvText);
+            .then(data => {
+                const rows = data.split('\n');
+                const content = {};
+                
+                rows.forEach(row => {
+                    const cols = row.split(',');
+                    if(cols[0] && cols[1]) {
+                        content[cols[0].trim()] = cols.slice(1).join(',').trim().replace(/^"(.*)"$/, '$1');
+                    }
+                });
 
-                // মূল তথ্য আপডেট
-                if(content.name) {
-                    document.getElementById('user-name').innerText = content.name + '.';
-                    document.getElementById('user-name-hero').innerText = content.name;
-                }
+                if(content.name) document.getElementById('user-name').innerText = content.name;
                 if(content.hero_title) document.getElementById('user-hero-title').innerText = content.hero_title;
                 if(content.hero_desc) document.getElementById('user-hero-desc').innerText = content.hero_desc;
                 if(content.about_text) document.getElementById('user-about-text').innerText = content.about_text;
+                if(content.location) document.getElementById('user-location').innerText = content.location;
+                
                 if(content.email) {
                     document.getElementById('user-email').innerText = content.email;
-                    document.getElementById('email-link').href = 'mailto:' + content.email;
+                    document.getElementById('email-link').href = `mailto:${content.email}`;
                 }
+                
                 if(content.phone) document.getElementById('user-phone').innerText = content.phone;
 
-                // সোশ্যাল মিডিয়া লিংক আপডেট
                 if(content.facebook) document.getElementById('facebook-link').href = content.facebook;
                 if(content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
                 if(content.github) document.getElementById('github-link').href = content.github;
 
-                // সার্ভিস অটো আপডেট
                 if(content.service1_title) document.getElementById('service1-title').innerText = content.service1_title;
                 if(content.service1_desc) document.getElementById('service1-desc').innerText = content.service1_desc;
 
@@ -156,7 +175,6 @@
                 if(content.service3_title) document.getElementById('service3-title').innerText = content.service3_title;
                 if(content.service3_desc) document.getElementById('service3-desc').innerText = content.service3_desc;
 
-                // ছবি আপডেট
                 if(content.profile_image) {
                     let imageLink = content.profile_image;
                     if (imageLink.includes('drive.google.com')) {
@@ -167,7 +185,6 @@
                     document.getElementById('profile-img-2').src = imageLink;
                 }
 
-                // অডিও প্লেয়ার
                 if(content.audio_url) {
                     document.getElementById('audio-box').style.display = 'block';
                     document.getElementById('audio-source').src = content.audio_url;
@@ -177,15 +194,19 @@
             .catch(err => console.error("Error loading Google Sheet data:", err));
     </script>
 
-    <!-- Interactive Background Particle Script -->
+    <!-- Background Particle Script -->
     <script>
-        const canvas = document.getElementById('particle-canvas');
+        const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
         let particlesArray = [];
-        const numberOfParticles = 80;
+        const numberOfParticles = 70;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         class Particle {
             constructor() {
@@ -194,19 +215,21 @@
                 this.size = Math.random() * 3 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.5;
                 this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = '#00eeff';
+                this.color = '#00f0ff';
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
+                ctx.shadowBlur = 8;
                 ctx.shadowColor = this.color;
                 ctx.fill();
             }
@@ -230,12 +253,6 @@
 
         init();
         animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
     </script>
 </body>
 </html>
