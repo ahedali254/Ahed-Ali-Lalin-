@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahed Ali Lelin - Portfolio</title>
+    <title>Ahad Ali Lelin - Portfolio</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -19,7 +19,7 @@
             pointer-events: none;
         }
 
-        /* ছবির সাইজ নির্দিষ্ট করে দেওয়ার জন্য CSS */
+        /* প্রোফাইল ইমেজের নির্দিষ্ট সাইজ */
         .home-img img, .about-img img {
             max-width: 350px;
             width: 100%;
@@ -37,6 +37,32 @@
             width: 100%;
             max-width: 400px;
             border-radius: 30px;
+        }
+
+        /* কন্টাক্ট সেকশনের লেখা সাইজ ও এলাইনমেন্ট */
+        .contact-info p {
+            font-size: 1.6rem;
+            margin: 1.5rem 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info p i {
+            color: #00f0ff;
+            font-size: 2rem;
+        }
+
+        .contact-info p span {
+            color: #e0e0e0;
+        }
+
+        /* গুগল শিটের বুলেট পয়েন্ট বা মাল্টি-লাইন সঠিকভাবে দেখানোর রেসপন্সিভ স্টাইল */
+        .services-box p, .about-content p {
+            white-space: pre-line;
+            text-align: left;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -60,8 +86,8 @@
     <section id="home" class="home">
         <div class="home-content">
             <h3>Hello, It's Me</h3>
-            <h1 id="user-name">Ahed Ali Lelin</h1>
-            <h3><span id="user-hero-title">surveillance operations & Tech Specialist</span></h3>
+            <h1 id="user-name">Ahad Ali Lelin</h1>
+            <h3><span id="user-hero-title">Security Professional & Tech Specialist</span></h3>
             <p id="user-hero-desc">Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
             <div class="social-media">
@@ -89,11 +115,11 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about-img">
-            <img id="profile-img-2" src="profile.jpg" alt="Ahed Ali Lelin">
+            <img id="profile-img-2" src="profile.jpg" alt="Ahad Ali Lelin">
         </div>
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
-            <p id="user-about-text">Loading...</p>
+            <p id="user-about-text">Loading about details...</p>
         </div>
     </section>
 
@@ -136,46 +162,70 @@
     <script>
         const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
 
+        // গুগল শিটের জটিল ডাটা ও প্যারাগ্রাফ সঠিক উপায়ে এক্সট্র্যাক্ট করার জন্য অ্যাডভান্সড ফাংশন
+        function parseGoogleCSV(text) {
+            const p = new RegExp(
+                '("(?:[^"]|"")*"|[^,\r\n]*)(,|\r\n|\n|\r)', 'gi'
+            );
+            let row = [];
+            const result = {};
+            let match = null;
+
+            while ((match = p.exec(text)) !== null) {
+                let matchedValue = match[1];
+                if (matchedValue.startsWith('"') && matchedValue.endsWith('"')) {
+                    matchedValue = matchedValue.substring(1, matchedValue.length - 1).replace(/""/g, '"');
+                }
+                row.push(matchedValue.trim());
+
+                if (match[2] !== ',') {
+                    if (row.length >= 2 && row[0]) {
+                        result[row[0]] = row.slice(1).join(',').trim();
+                    }
+                    row = [];
+                }
+            }
+            return result;
+        }
+
         fetch(sheetURL)
             .then(response => response.text())
             .then(data => {
-                const rows = data.split('\n');
-                const content = {};
-                
-                rows.forEach(row => {
-                    const cols = row.split(',');
-                    if(cols[0] && cols[1]) {
-                        content[cols[0].trim()] = cols.slice(1).join(',').trim().replace(/^"(.*)"$/, '$1');
-                    }
-                });
+                const content = parseGoogleCSV(data);
 
-                if(content.name) document.getElementById('user-name').innerText = content.name;
-                if(content.hero_title) document.getElementById('user-hero-title').innerText = content.hero_title;
-                if(content.hero_desc) document.getElementById('user-hero-desc').innerText = content.hero_desc;
-                if(content.about_text) document.getElementById('user-about-text').innerText = content.about_text;
-                if(content.location) document.getElementById('user-location').innerText = content.location;
-                
-                if(content.email) {
-                    document.getElementById('user-email').innerText = content.email;
-                    document.getElementById('email-link').href = `mailto:${content.email}`;
+                // গুগল শিটের মান থাকলে বসাবে, না থাকলে ওয়েবসাইটের মূল টেক্সট থাকবে
+                const updateText = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val && val.length > 0) el.innerText = val;
+                };
+
+                updateText('user-name', content.name);
+                updateText('user-hero-title', content.hero_title);
+                updateText('user-hero-desc', content.hero_desc);
+                updateText('user-about-text', content.about_text);
+                updateText('user-location', content.location);
+                updateText('user-phone', content.phone);
+
+                if (content.email) {
+                    updateText('user-email', content.email);
+                    const emailLink = document.getElementById('email-link');
+                    if (emailLink) emailLink.href = `mailto:${content.email}`;
                 }
-                
-                if(content.phone) document.getElementById('user-phone').innerText = content.phone;
 
-                if(content.facebook) document.getElementById('facebook-link').href = content.facebook;
-                if(content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
-                if(content.github) document.getElementById('github-link').href = content.github;
+                if (content.facebook) document.getElementById('facebook-link').href = content.facebook;
+                if (content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
+                if (content.github) document.getElementById('github-link').href = content.github;
 
-                if(content.service1_title) document.getElementById('service1-title').innerText = content.service1_title;
-                if(content.service1_desc) document.getElementById('service1-desc').innerText = content.service1_desc;
+                updateText('service1-title', content.service1_title);
+                updateText('service1-desc', content.service1_desc);
 
-                if(content.service2_title) document.getElementById('service2-title').innerText = content.service2_title;
-                if(content.service2_desc) document.getElementById('service2-desc').innerText = content.service2_desc;
+                updateText('service2-title', content.service2_title);
+                updateText('service2-desc', content.service2_desc);
 
-                if(content.service3_title) document.getElementById('service3-title').innerText = content.service3_title;
-                if(content.service3_desc) document.getElementById('service3-desc').innerText = content.service3_desc;
+                updateText('service3-title', content.service3_title);
+                updateText('service3-desc', content.service3_desc);
 
-                if(content.profile_image) {
+                if (content.profile_image) {
                     let imageLink = content.profile_image;
                     if (imageLink.includes('drive.google.com')) {
                         const fileId = imageLink.split('/d/')[1].split('/')[0];
@@ -185,13 +235,19 @@
                     document.getElementById('profile-img-2').src = imageLink;
                 }
 
-                if(content.audio_url) {
-                    document.getElementById('audio-box').style.display = 'block';
-                    document.getElementById('audio-source').src = content.audio_url;
-                    document.getElementById('audio-player').load();
+                if (content.audio_url && content.audio_url.length > 5) {
+                    const audioBox = document.getElementById('audio-box');
+                    const audioSource = document.getElementById('audio-source');
+                    const audioPlayer = document.getElementById('audio-player');
+                    
+                    if (audioBox && audioSource && audioPlayer) {
+                        audioBox.style.display = 'block';
+                        audioSource.src = content.audio_url;
+                        audioPlayer.load();
+                    }
                 }
             })
-            .catch(err => console.error("Error loading Google Sheet data:", err));
+            .catch(err => console.error("Data syncing status:", err));
     </script>
 
     <!-- Background Particle Script -->
@@ -248,7 +304,7 @@
                 particlesArray[i].update();
                 particlesArray[i].draw();
             }
-            requestAnimationFrame(animate);
+                requestAnimationFrame(animate);
         }
 
         init();
