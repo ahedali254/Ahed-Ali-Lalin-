@@ -3,210 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahad Ali Lelin - Personal Portfolio</title>
+    <title>Ahed Ali Lelin - Portfolio</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CSS Link -->
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: #050b14;
-            pointer-events: none;
-        }
-
-        body {
-            background: transparent;
-            margin: 0;
-            padding: 0;
-        }
-
-        section {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Audio Player Styling */
-        .audio-container {
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        audio {
-            width: 80%;
-            max-width: 500px;
-            margin-top: 1.5rem;
-            outline: none;
-            border-radius: 30px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Dynamic Canvas Animation -->
-    <canvas id="bg-canvas"></canvas>
-
     <!-- Header / Navbar -->
     <header class="header">
+        <a href="#" class="logo" id="user-name">AhadLelin.</a>
         <nav class="navbar">
-            <a href="#home" class="logo">Ahad<span id="logo-span">Lelin.</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="writings.html">Writings</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="writings.html">Writings</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <!-- Home / Hero Section -->
+    <!-- Canvas for Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Home Section -->
     <section id="home" class="home">
         <div class="home-content">
             <h3>Hello, It's Me</h3>
-            <h1 id="user-name">Ahad Ali Lelin</h1>
-            <h3>And I'm a <span id="user-hero-title" class="multiple-text">Security Professional & Tech Specialist</span></h3>
+            <h1 id="user-name-hero">Ahad Ali Lelin</h1>
+            <h3><span id="user-hero-title">Security Professional & Tech Specialist</span></h3>
             <p id="user-hero-desc">Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
+            <!-- Social Links -->
             <div class="social-media">
-                <a id="facebook-link" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                <a id="linkedin-link" href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a id="github-link" href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a id="email-link" href="mailto:lelin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" id="facebook-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" id="linkedin-link" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" id="github-link" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" id="email-link"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <!-- Audio Player Box (Optional) -->
+            <div id="audio-box" style="display: none; margin-top: 15px;">
+                <audio id="audio-player" controls>
+                    <source id="audio-source" src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
 
             <a href="#contact" class="btn">Hire Me</a>
         </div>
 
         <div class="home-img">
-            <div class="img-box">
-                <img id="profile-img-1" src="profile.jpg" alt="Ahad Ali Lelin">
-            </div>
+            <img id="profile-img-1" src="profile.jpg" alt="Profile Picture">
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about-img">
-            <div class="img-box">
-                <img id="profile-img-2" src="profile.jpg" alt="Ahad Ali Lelin">
-            </div>
+            <img id="profile-img-2" src="profile.jpg" alt="About Picture">
         </div>
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
-            <h3>Security & Operations Professional</h3>
-            <p id="user-about-text">I am Ahad Ali Lelin, currently working as a VSO (OP) at United Group. Holding a degree in Economics, I bridge the gap between business analytics and technical security operations.</p>
-            <a href="#contact" class="btn">Contact Me</a>
+            <p id="user-about-text">Loading about details...</p>
         </div>
     </section>
 
     <!-- Services Section -->
-<section id="services" class="services">
-    <h2 class="heading">My <span>Services & Expertise</span></h2>
-    
-    <div class="services-container">
-        <div class="services-box">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3 id="service1-title">Surveillance & Security Ops</h3>
-            <p id="service1-desc">Central control room management, monitoring thousands of CCTV/IP cameras, and protocols execution.</p>
-        </div>
+    <section id="services" class="services">
+        <h2 class="heading">My <span>Services & Expertise</span></h2>
+        
+        <div class="services-container">
+            <div class="services-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3 id="service1-title">Surveillance & Security Ops</h3>
+                <p id="service1-desc">Central control room management, monitoring thousands of CCTV/IP cameras, and protocols execution.</p>
+            </div>
 
-        <div class="services-box">
-            <i class="fa-solid fa-chart-pie"></i>
-            <h3 id="service2-title">Data Analytics</h3>
-            <p id="service2-desc">Predictive trendline modeling, spreadsheet management, and analytical operational reporting.</p>
-        </div>
+            <div class="services-box">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3 id="service2-title">Data Analytics</h3>
+                <p id="service2-desc">Predictive trendline modeling, spreadsheet management, and analytical operational reporting.</p>
+            </div>
 
-        <div class="services-box">
-            <i class="fa-solid fa-headset"></i>
-            <h3 id="service3-title">IT Support & Marketing</h3>
-            <p id="service3-desc">System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
-        </div>
-    </div>
-</section>
-
-        <!-- Dynamic Audio Section -->
-        <div id="audio-box" class="audio-container" style="display:none;">
-            <h3 style="color: #00f0ff; margin-top: 2rem;">Featured Audio / Voice Note</h3>
-            <audio id="audio-player" controls>
-                <source id="audio-source" src="" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+            <div class="services-box">
+                <i class="fa-solid fa-headset"></i>
+                <h3 id="service3-title">IT Support & Marketing</h3>
+                <p id="service3-desc">System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2 class="heading">Contact <span>Me!</span></h2>
-        
         <div class="contact-info">
-            <div class="info-box">
-                <i class="fa-solid fa-envelope"></i>
-                <h3>Email</h3>
-                <p id="user-email">lelin1622214@gmail.com</p>
-            </div>
-            <div class="info-box">
-                <i class="fa-solid fa-phone"></i>
-                <h3>Phone / WhatsApp</h3>
-                <p id="user-phone">+880 1620090273</p>
-            </div>
-            <div class="info-box">
-                <i class="fa-solid fa-location-dot"></i>
-                <h3>Location</h3>
-                <p id="user-location">Dhaka, Bangladesh</p>
-            </div>
+            <p><i class="fa-solid fa-envelope"></i> Email: <span id="user-email">lelin1622214@gmail.com</span></p>
+            <p><i class="fa-solid fa-phone"></i> Phone: <span id="user-phone">+880 1620090273</span></p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2026 by Ahad Ali Lelin | All Rights Reserved.</p>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
-        </div>
-    </footer>
-
-    <!-- Google Sheets Dynamic Content Script -->
+    <!-- Google Sheet Data Sync Script -->
     <script>
-        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
+        // আপনার প্রকাশিত গুগল শিটের CSV লিংকটি নিচে দেওয়া আছে
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTE2kF8p6d7S_7S_6_Example/pub?gid=0&single=true&output=csv';
+
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const data = {};
+            lines.forEach(line => {
+                const parts = line.split(',');
+                if (parts.length >= 2) {
+                    const key = parts[0].trim();
+                    const value = parts.slice(1).join(',').trim().replace(/^"(.*)"$/, '$1');
+                    data[key] = value;
+                }
+            });
+            return data;
+        }
 
         fetch(sheetURL)
             .then(response => response.text())
-            .then(data => {
-                const rows = data.split('\n').map(row => row.split(','));
-                const content = {};
-                
-                rows.forEach(row => {
-                    if(row[0] && row[1]) {
-                        content[row[0].trim()] = row[1].trim();
-                    }
-                });
+            .then(csvText => {
+                const content = parseCSV(csvText);
 
-                // গুগল শিট থেকে সকল টেক্সট লোড
-                if(content.name) document.getElementById('user-name').innerText = content.name;
+                // মূল তথ্য আপডেট
+                if(content.name) {
+                    document.getElementById('user-name').innerText = content.name + '.';
+                    document.getElementById('user-name-hero').innerText = content.name;
+                }
                 if(content.hero_title) document.getElementById('user-hero-title').innerText = content.hero_title;
                 if(content.hero_desc) document.getElementById('user-hero-desc').innerText = content.hero_desc;
                 if(content.about_text) document.getElementById('user-about-text').innerText = content.about_text;
-                if(content.location) document.getElementById('user-location').innerText = content.location;
-                
                 if(content.email) {
                     document.getElementById('user-email').innerText = content.email;
-                    document.getElementById('email-link').href = `mailto:${content.email}`;
+                    document.getElementById('email-link').href = 'mailto:' + content.email;
                 }
-                
                 if(content.phone) document.getElementById('user-phone').innerText = content.phone;
 
-                // সোশ্যাল মিডিয়া লিংক
+                // সোশ্যাল মিডিয়া লিংক আপডেট
                 if(content.facebook) document.getElementById('facebook-link').href = content.facebook;
                 if(content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
                 if(content.github) document.getElementById('github-link').href = content.github;
+
+                // সার্ভিস অটো আপডেট
+                if(content.service1_title) document.getElementById('service1-title').innerText = content.service1_title;
+                if(content.service1_desc) document.getElementById('service1-desc').innerText = content.service1_desc;
+
+                if(content.service2_title) document.getElementById('service2-title').innerText = content.service2_title;
+                if(content.service2_desc) document.getElementById('service2-desc').innerText = content.service2_desc;
+
+                if(content.service3_title) document.getElementById('service3-title').innerText = content.service3_title;
+                if(content.service3_desc) document.getElementById('service3-desc').innerText = content.service3_desc;
 
                 // ছবি আপডেট
                 if(content.profile_image) {
@@ -219,86 +167,41 @@
                     document.getElementById('profile-img-2').src = imageLink;
                 }
 
-                // অডিও প্লেয়ার (যদি গুগল শিটে লিংক থাকে তবেই দেখাবে)
+                // অডিও প্লেয়ার
                 if(content.audio_url) {
                     document.getElementById('audio-box').style.display = 'block';
                     document.getElementById('audio-source').src = content.audio_url;
                     document.getElementById('audio-player').load();
                 }
-                // সার্ভিস অটো আপডেট
-                if(content.service1_title) document.getElementById('service1-title').innerText = content.service1_title;
-                if(content.service1_desc) document.getElementById('service1-desc').innerText = content.service1_desc;
-
-                if(content.service2_title) document.getElementById('service2-title').innerText = content.service2_title;
-                if(content.service2_desc) document.getElementById('service2-desc').innerText = content.service2_desc;
-
-                if(content.service3_title) document.getElementById('service3-title').innerText = content.service3_title;
-                if(content.service3_desc) document.getElementById('service3-desc').innerText = content.service3_desc;
-            })
             })
             .catch(err => console.error("Error loading Google Sheet data:", err));
     </script>
 
     <!-- Interactive Background Particle Script -->
     <script>
-        const canvas = document.getElementById('bg-canvas');
+        const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         let particlesArray = [];
-        const numberOfParticles = 85;
-        const mouse = { x: null, y: null, radius: 120 };
-
-        window.addEventListener('mousemove', function(event) {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-
-        window.addEventListener('mouseout', function() {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        const numberOfParticles = 80;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.6;
-                this.speedY = (Math.random() - 0.5) * 0.6;
-                const colors = ['rgba(0, 240, 255, 0.8)', 'rgba(0, 150, 255, 0.7)', 'rgba(0, 255, 170, 0.7)', 'rgba(255, 255, 255, 0.9)'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = '#00eeff';
             }
-
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-
-                if (mouse.x && mouse.y) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        const maxDistance = mouse.radius;
-                        const force = (maxDistance - distance) / maxDistance;
-                        this.x -= forceDirectionX * force * 3;
-                        this.y -= forceDirectionY * force * 3;
-                    }
-                }
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
             }
-
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -327,6 +230,12 @@
 
         init();
         animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
     </script>
 </body>
 </html>
