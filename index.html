@@ -19,7 +19,48 @@
             pointer-events: none;
         }
 
-        /* প্রোফাইল ইমেজের নির্দিষ্ট সাইজ */
+        /* HEADER & NAVBAR FIX */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 9%;
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #00f0ff;
+        }
+
+        .navbar a {
+            font-size: 1.7rem;
+            color: #ffffff !important;
+            text-decoration: none;
+            margin-left: 3.5rem;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00f0ff !important;
+            text-shadow: 0 0 10px #00f0ff;
+        }
+
+        /* Profile Images */
         .home-img img, .about-img img {
             max-width: 350px;
             width: 100%;
@@ -39,7 +80,7 @@
             border-radius: 30px;
         }
 
-        /* কন্টাক্ট সেকশনের লেখা সাইজ ও এলাইনমেন্ট */
+        /* Contact Styling */
         .contact-info p {
             font-size: 1.6rem;
             margin: 1.5rem 0;
@@ -58,7 +99,7 @@
             color: #e0e0e0;
         }
 
-        /* গুগল শিটের বুলেট পয়েন্ট বা মাল্টি-লাইন সঠিকভাবে দেখানোর রেসপন্সিভ স্টাইল */
+        /* Bullet Points Fix */
         .services-box p, .about-content p {
             white-space: pre-line;
             text-align: left;
@@ -158,11 +199,10 @@
         </div>
     </section>
 
-    <!-- Google Sheet Data Sync Script -->
+    <!-- Google Sheet Sync Script -->
     <script>
         const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
 
-        // গুগল শিটের জটিল ডাটা ও প্যারাগ্রাফ সঠিক উপায়ে এক্সট্র্যাক্ট করার জন্য অ্যাডভান্সড ফাংশন
         function parseGoogleCSV(text) {
             const p = new RegExp(
                 '("(?:[^"]|"")*"|[^,\r\n]*)(,|\r\n|\n|\r)', 'gi'
@@ -193,7 +233,6 @@
             .then(data => {
                 const content = parseGoogleCSV(data);
 
-                // গুগল শিটের মান থাকলে বসাবে, না থাকলে ওয়েবসাইটের মূল টেক্সট থাকবে
                 const updateText = (id, val) => {
                     const el = document.getElementById(id);
                     if (el && val && val.length > 0) el.innerText = val;
@@ -304,7 +343,7 @@
                 particlesArray[i].update();
                 particlesArray[i].draw();
             }
-                requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
         }
 
         init();
