@@ -7,8 +7,36 @@
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Particle Background Canvas Styling */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #050b14; /* ডার্ক ফিউচারিস্টিক ব্যাকগ্রাউন্ড */
+            pointer-events: none;
+        }
+
+        /* Ensure sections are transparent so canvas is visible */
+        body {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Motion Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
 
     <!-- Header / Navbar -->
     <header>
@@ -32,8 +60,8 @@
             <p>Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
             <div class="social-media">
-                <a href="https://facebook.com" target="_https://www.facebook.com/ahedali.co?rdid=h65xalC0EqwAHo0h&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F185WJWTFCn%2F#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://linkedin.com" target="_https://www.linkedin.com/in/ahed-ali-1a391a42a/?isSelfProfile=false"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
                 <a href="mailto:lelin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
@@ -42,8 +70,7 @@
         </div>
 
         <div class="home-img">
-            <!-- আপনার ছবিটির নাম profile.jpg দিয়ে ফোল্ডারে রাখবেন -->
-            <img src="profile.jpg.jpeg" alt="Ahad Ali Lelin">
+            <img src="profile.jpg" alt="Ahad Ali Lelin">
         </div>
     </section>
 
@@ -119,5 +146,110 @@
         </div>
     </footer>
 
+    <!-- Interactive Motion Canvas Script -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        const numberOfParticles = 85;
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 120
+        };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('mouseout', function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+
+                const colors = [
+                    'rgba(0, 240, 255, 0.8)',
+                    'rgba(0, 150, 255, 0.7)',
+                    'rgba(0, 255, 170, 0.7)',
+                    'rgba(255, 255, 255, 0.9)'
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+
+                // Mouse interaction effect
+                if (mouse.x && mouse.y) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const maxDistance = mouse.radius;
+                        const force = (maxDistance - distance) / maxDistance;
+                        const directionX = forceDirectionX * force * 3;
+                        const directionY = forceDirectionY * force * 3;
+
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
