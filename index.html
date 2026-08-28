@@ -20,7 +20,6 @@
             pointer-events: none;
         }
 
-        /* Ensure sections are transparent so canvas is visible */
         body {
             background: transparent;
             margin: 0;
@@ -41,7 +40,7 @@
     <!-- Header / Navbar -->
     <header class="header">
         <nav class="navbar">
-            <a href="#home" class="logo">Ahad<span>Lelin.</span></a>
+            <a href="#home" class="logo">Ahad<span id="logo-span">Lelin.</span></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -55,15 +54,15 @@
     <section id="home" class="home">
         <div class="home-content">
             <h3>Hello, It's Me</h3>
-            <h1>Ahad Ali Lelin</h1>
-            <h3>And I'm a <span class="multiple-text">Security Professional & Tech Specialist</span></h3>
-            <p>Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
+            <h1 id="user-name">Ahad Ali Lelin</h1>
+            <h3>And I'm a <span id="user-hero-title" class="multiple-text">Security Professional & Tech Specialist</span></h3>
+            <p id="user-hero-desc">Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
             <div class="social-media">
                 <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:lelin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a id="email-link" href="mailto:lelin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
             <a href="#contact" class="btn">Hire Me</a>
@@ -71,7 +70,7 @@
 
         <div class="home-img">
             <div class="img-box">
-                <img src="profile.jpg" alt="Ahad Ali Lelin">
+                <img id="profile-img-1" src="profile.jpg" alt="Ahad Ali Lelin">
             </div>
         </div>
     </section>
@@ -80,14 +79,13 @@
     <section id="about" class="about">
         <div class="about-img">
             <div class="img-box">
-                <img src="profile.jpg" alt="Ahad Ali Lelin">
+                <img id="profile-img-2" src="profile.jpg" alt="Ahad Ali Lelin">
             </div>
         </div>
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
             <h3>Security & Operations Professional</h3>
-            <p>I am Ahad Ali Lelin, currently working as a VSO (OP) at United Group. Holding a degree in Economics, I bridge the gap between business analytics and technical security operations. I manage large-scale surveillance setups monitoring 4,000+ IP cameras while handling data analysis and troubleshooting.</p>
-            <p>Additionally, I have a passion for creative writing, poetry, and modern video/media content creation.</p>
+            <p id="user-about-text">I am Ahad Ali Lelin, currently working as a VSO (OP) at United Group. Holding a degree in Economics, I bridge the gap between business analytics and technical security operations.</p>
             <a href="#contact" class="btn">Contact Me</a>
         </div>
     </section>
@@ -125,12 +123,12 @@
             <div class="info-box">
                 <i class="fa-solid fa-envelope"></i>
                 <h3>Email</h3>
-                <p>lelin1622214@gmail.com</p>
+                <p id="user-email">lelin1622214@gmail.com</p>
             </div>
             <div class="info-box">
                 <i class="fa-solid fa-phone"></i>
                 <h3>Phone / WhatsApp</h3>
-                <p>+880 1620090273</p>
+                <p id="user-phone">+880 1620090273</p>
             </div>
             <div class="info-box">
                 <i class="fa-solid fa-location-dot"></i>
@@ -149,6 +147,49 @@
             <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
         </div>
     </footer>
+
+    <!-- Google Sheets Dynamic Content Fetcher Script -->
+    <script>
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
+
+        fetch(sheetURL)
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n').map(row => row.split(','));
+                const content = {};
+                
+                rows.forEach(row => {
+                    if(row[0] && row[1]) {
+                        content[row[0].trim()] = row[1].trim();
+                    }
+                });
+
+                // Google Sheet-এর ডাটা অনুযায়ী ওয়েবসাইট অটো-আপডেট
+                if(content.name) document.getElementById('user-name').innerText = content.name;
+                if(content.hero_title) document.getElementById('user-hero-title').innerText = content.hero_title;
+                if(content.about_text) document.getElementById('user-about-text').innerText = content.about_text;
+                
+                if(content.email) {
+                    document.getElementById('user-email').innerText = content.email;
+                    document.getElementById('email-link').href = `mailto:${content.email}`;
+                }
+                
+                if(content.phone) document.getElementById('user-phone').innerText = content.phone;
+
+                // ছবি আপডেটের জন্য
+                if(content.profile_image) {
+                    let imageLink = content.profile_image;
+                    // গুগল ড্রাইভ লিংক হলে ডিরেক্ট ইমেজ লিংকে কনভার্ট করা
+                    if (imageLink.includes('drive.google.com')) {
+                        const fileId = imageLink.split('/d/')[1].split('/')[0];
+                        imageLink = `https://lh3.googleusercontent.com/d/${fileId}`;
+                    }
+                    document.getElementById('profile-img-1').src = imageLink;
+                    document.getElementById('profile-img-2').src = imageLink;
+                }
+            })
+            .catch(err => console.error("Error loading Google Sheet data:", err));
+    </script>
 
     <!-- Interactive Motion Canvas Script -->
     <script>
@@ -207,7 +248,6 @@
                 if (this.y > canvas.height) this.y = 0;
                 if (this.y < 0) this.y = canvas.height;
 
-                // Mouse interaction effect
                 if (mouse.x && mouse.y) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
