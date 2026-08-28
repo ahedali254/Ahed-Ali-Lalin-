@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-color: #050b14; /* ডার্ক ফিউচারিস্টিক ব্যাকগ্রাউন্ড */
+            background-color: #050b14;
             pointer-events: none;
         }
 
@@ -39,7 +39,7 @@
     <canvas id="bg-canvas"></canvas>
 
     <!-- Header / Navbar -->
-    <header>
+    <header class="header">
         <nav class="navbar">
             <a href="#home" class="logo">Ahad<span>Lelin.</span></a>
             <ul class="nav-links">
@@ -70,16 +70,19 @@
         </div>
 
         <div class="home-img">
-            <img src="profile.jpg" alt="Ahad Ali Lelin">
+            <div class="img-box">
+                <img src="profile.jpg" alt="Ahad Ali Lelin">
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="home-img">
-    <div class="img-box">
-        <img src="profile.jpeg" alt="Ahad Ali Lelin">
-    </div>
+        <div class="about-img">
+            <div class="img-box">
+                <img src="profile.jpg" alt="Ahad Ali Lelin">
+            </div>
+        </div>
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
             <h3>Security & Operations Professional</h3>
