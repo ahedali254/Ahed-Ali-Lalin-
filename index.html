@@ -8,7 +8,6 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Particle Background Canvas Styling */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -30,11 +29,26 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Audio Player Styling */
+        .audio-container {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        audio {
+            width: 80%;
+            max-width: 500px;
+            margin-top: 1.5rem;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Motion Background Canvas -->
+    <!-- Dynamic Canvas Animation -->
     <canvas id="bg-canvas"></canvas>
 
     <!-- Header / Navbar -->
@@ -45,6 +59,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="writings.html">Writings</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -59,9 +74,9 @@
             <p id="user-hero-desc">Welcome to my official website. I specialize in surveillance operations, central control management, data analytics, and IT support.</p>
             
             <div class="social-media">
-                <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a id="facebook-link" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="linkedin-link" href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="github-link" href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
                 <a id="email-link" href="mailto:lelin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
@@ -113,6 +128,15 @@
                 <p>System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
             </div>
         </div>
+
+        <!-- Dynamic Audio Section -->
+        <div id="audio-box" class="audio-container" style="display:none;">
+            <h3 style="color: #00f0ff; margin-top: 2rem;">Featured Audio / Voice Note</h3>
+            <audio id="audio-player" controls>
+                <source id="audio-source" src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </section>
 
     <!-- Contact Section -->
@@ -133,7 +157,7 @@
             <div class="info-box">
                 <i class="fa-solid fa-location-dot"></i>
                 <h3>Location</h3>
-                <p>Dhaka, Bangladesh</p>
+                <p id="user-location">Dhaka, Bangladesh</p>
             </div>
         </div>
     </section>
@@ -148,7 +172,7 @@
         </div>
     </footer>
 
-    <!-- Google Sheets Dynamic Content Fetcher Script -->
+    <!-- Google Sheets Dynamic Content Script -->
     <script>
         const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTk6CgDb4ZCxPwCz_BabUsMhY6jz_q4U18JTvMTtJwgiScnLwEENQNYAa6qg5O9R5DvO_d2yl6uqG7f/pub?output=csv';
 
@@ -164,10 +188,12 @@
                     }
                 });
 
-                // Google Sheet-এর ডাটা অনুযায়ী ওয়েবসাইট অটো-আপডেট
+                // গুগল শিট থেকে সকল টেক্সট লোড
                 if(content.name) document.getElementById('user-name').innerText = content.name;
                 if(content.hero_title) document.getElementById('user-hero-title').innerText = content.hero_title;
+                if(content.hero_desc) document.getElementById('user-hero-desc').innerText = content.hero_desc;
                 if(content.about_text) document.getElementById('user-about-text').innerText = content.about_text;
+                if(content.location) document.getElementById('user-location').innerText = content.location;
                 
                 if(content.email) {
                     document.getElementById('user-email').innerText = content.email;
@@ -176,10 +202,14 @@
                 
                 if(content.phone) document.getElementById('user-phone').innerText = content.phone;
 
-                // ছবি আপডেটের জন্য
+                // সোশ্যাল মিডিয়া লিংক
+                if(content.facebook) document.getElementById('facebook-link').href = content.facebook;
+                if(content.linkedin) document.getElementById('linkedin-link').href = content.linkedin;
+                if(content.github) document.getElementById('github-link').href = content.github;
+
+                // ছবি আপডেট
                 if(content.profile_image) {
                     let imageLink = content.profile_image;
-                    // গুগল ড্রাইভ লিংক হলে ডিরেক্ট ইমেজ লিংকে কনভার্ট করা
                     if (imageLink.includes('drive.google.com')) {
                         const fileId = imageLink.split('/d/')[1].split('/')[0];
                         imageLink = `https://lh3.googleusercontent.com/d/${fileId}`;
@@ -187,23 +217,24 @@
                     document.getElementById('profile-img-1').src = imageLink;
                     document.getElementById('profile-img-2').src = imageLink;
                 }
+
+                // অডিও প্লেয়ার (যদি গুগল শিটে লিংক থাকে তবেই দেখাবে)
+                if(content.audio_url) {
+                    document.getElementById('audio-box').style.display = 'block';
+                    document.getElementById('audio-source').src = content.audio_url;
+                    document.getElementById('audio-player').load();
+                }
             })
             .catch(err => console.error("Error loading Google Sheet data:", err));
     </script>
 
-    <!-- Interactive Motion Canvas Script -->
+    <!-- Interactive Background Particle Script -->
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-
         let particlesArray = [];
         const numberOfParticles = 85;
-
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 120
-        };
+        const mouse = { x: null, y: null, radius: 120 };
 
         window.addEventListener('mousemove', function(event) {
             mouse.x = event.x;
@@ -229,13 +260,7 @@
                 this.size = Math.random() * 3 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.6;
                 this.speedY = (Math.random() - 0.5) * 0.6;
-
-                const colors = [
-                    'rgba(0, 240, 255, 0.8)',
-                    'rgba(0, 150, 255, 0.7)',
-                    'rgba(0, 255, 170, 0.7)',
-                    'rgba(255, 255, 255, 0.9)'
-                ];
+                const colors = ['rgba(0, 240, 255, 0.8)', 'rgba(0, 150, 255, 0.7)', 'rgba(0, 255, 170, 0.7)', 'rgba(255, 255, 255, 0.9)'];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
 
@@ -257,11 +282,8 @@
                         const forceDirectionY = dy / distance;
                         const maxDistance = mouse.radius;
                         const force = (maxDistance - distance) / maxDistance;
-                        const directionX = forceDirectionX * force * 3;
-                        const directionY = forceDirectionY * force * 3;
-
-                        this.x -= directionX;
-                        this.y -= directionY;
+                        this.x -= forceDirectionX * force * 3;
+                        this.y -= forceDirectionY * force * 3;
                     }
                 }
             }
