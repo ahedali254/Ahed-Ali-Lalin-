@@ -106,28 +106,29 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="heading">My <span>Services & Expertise</span></h2>
-        
-        <div class="services-container">
-            <div class="services-box">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>Surveillance & Security Ops</h3>
-                <p>Central control room management, monitoring thousands of CCTV/IP cameras, and protocols execution.</p>
-            </div>
-
-            <div class="services-box">
-                <i class="fa-solid fa-chart-pie"></i>
-                <h3>Data Analytics</h3>
-                <p>Predictive trendline modeling, spreadsheet management, and analytical operational reporting.</p>
-            </div>
-
-            <div class="services-box">
-                <i class="fa-solid fa-headset"></i>
-                <h3>IT Support & Marketing</h3>
-                <p>System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
-            </div>
+<section id="services" class="services">
+    <h2 class="heading">My <span>Services & Expertise</span></h2>
+    
+    <div class="services-container">
+        <div class="services-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3 id="service1-title">Surveillance & Security Ops</h3>
+            <p id="service1-desc">Central control room management, monitoring thousands of CCTV/IP cameras, and protocols execution.</p>
         </div>
+
+        <div class="services-box">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h3 id="service2-title">Data Analytics</h3>
+            <p id="service2-desc">Predictive trendline modeling, spreadsheet management, and analytical operational reporting.</p>
+        </div>
+
+        <div class="services-box">
+            <i class="fa-solid fa-headset"></i>
+            <h3 id="service3-title">IT Support & Marketing</h3>
+            <p id="service3-desc">System troubleshooting, digital workflow setup, and corporate digital presence management.</p>
+        </div>
+    </div>
+</section>
 
         <!-- Dynamic Audio Section -->
         <div id="audio-box" class="audio-container" style="display:none;">
@@ -224,6 +225,16 @@
                     document.getElementById('audio-source').src = content.audio_url;
                     document.getElementById('audio-player').load();
                 }
+                // সার্ভিস অটো আপডেট
+                if(content.service1_title) document.getElementById('service1-title').innerText = content.service1_title;
+                if(content.service1_desc) document.getElementById('service1-desc').innerText = content.service1_desc;
+
+                if(content.service2_title) document.getElementById('service2-title').innerText = content.service2_title;
+                if(content.service2_desc) document.getElementById('service2-desc').innerText = content.service2_desc;
+
+                if(content.service3_title) document.getElementById('service3-title').innerText = content.service3_title;
+                if(content.service3_desc) document.getElementById('service3-desc').innerText = content.service3_desc;
+            })
             })
             .catch(err => console.error("Error loading Google Sheet data:", err));
     </script>
