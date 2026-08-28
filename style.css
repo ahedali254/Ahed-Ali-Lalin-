@@ -395,4 +395,29 @@ section {
     .nav-links a {
         font-size: 1.4rem;
     }
+/* Header and Navigation Alignment Fix */
+.header {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 3.5rem !important;
+    padding: 1.2rem 5% !important;
+}
+
+.logo {
+    white-space: nowrap !important;
+}
+
+.navbar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.navbar a {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    white-space: nowrap !important;
 }
