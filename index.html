@@ -26,8 +26,37 @@
             border-bottom: 1px solid rgba(0, 240, 255, 0.15); 
         }
 
-        .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
-        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        /* Updated Dynamic Neon Logo Styles */
+        .logo { 
+            font-size: 1.8rem; 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 700; 
+            letter-spacing: 0.5px; 
+            white-space: nowrap; 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: #00f0ff;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+
+        .logo-accent {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
         
         .navbar { display: flex; align-items: center; gap: 1.8rem; }
         .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; white-space: nowrap; }
@@ -187,8 +216,11 @@
 <body>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Header with Dynamic Logo -->
     <header class="header">
-        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-terminal logo-icon"></i> Ahad<span class="logo-accent"> Ali Lelin</span>
+        </a>
         
         <nav class="navbar" id="navbar">
             <a href="index.html" class="active">Home</a>
