@@ -27,9 +27,31 @@
         .skill-card { background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.15); transition: 0.3s ease; }
         .skill-card:hover { border-color: #00f0ff; background: rgba(0, 240, 255, 0.04); }
         .skill-card h4 { color: #00f0ff; margin-bottom: 0.4rem; font-size: 1.1rem; }
-        .about-img img { max-width: 360px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); border: 2px solid rgba(0, 240, 255, 0.4); object-fit: cover; transition: 0.4s ease; }
+        
+        /* লম্বালম্বী (Portrait) ছবির জন্য সিএসএস */
+        .about-img {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .about-img img { 
+            width: 320px; 
+            height: 480px; 
+            border-radius: 20px; 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); 
+            border: 2px solid rgba(0, 240, 255, 0.4); 
+            object-fit: cover; 
+            object-position: top center; 
+            transition: 0.4s ease; 
+        }
         .about-img img:hover { box-shadow: 0 0 45px rgba(0, 240, 255, 0.5); }
-        @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } .about { flex-direction: column; text-align: center; } }
+        
+        @media (max-width: 991px) { 
+            .header { padding: 1rem 4%; } 
+            section { padding: 6rem 4% 3rem; } 
+            .about { flex-direction: column; text-align: center; } 
+            .about-img img { width: 280px; height: 420px; }
+        }
         @media (max-width: 768px) { .navbar { display: none; } }
     </style>
 </head>
@@ -50,7 +72,7 @@
 
     <section class="about">
         <div class="about-img">
-            <img src="profile.jpg" alt="Ahed Ali Lelin">
+            <img src="about.jpeg" alt="Ahed Ali Lelin">
         </div>
         <div class="about-content">
             <h2 class="heading" style="text-align: left;">About <span>Me</span></h2>
@@ -69,6 +91,10 @@
                 <div class="skill-card">
                     <h4>Digital Marketing & Lead Gen</h4>
                     <p>LinkedIn Sales Navigator, B2B Prospecting, HubSpot, Salesforce CRM.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Creative & Performing Arts</h4>
+                    <p>Creative Writing, Recitation (আবৃত্তি), Anchoring/Hosting (উপস্থাপনা), Acting (অভিনয়).</p>
                 </div>
                 <div class="skill-card">
                     <h4>Software & Tools</h4>
