@@ -4,12 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience - Ahad Ali Lelin</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
+        .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
+        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        .navbar { display: flex; align-items: center; gap: 2rem; }
+        .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
+        .navbar a:hover::after, .navbar a.active::after { width: 100%; }
+        .navbar a:hover, .navbar a.active { color: #00f0ff; }
+        
+        /* Section Layout */
+        section { flex: 1; min-height: 100vh; padding: 8rem 7% 4rem; }
+        .heading { font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
+        .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+        .sub-heading { text-align: center; color: #a0a0a0; font-size: 1.1rem; margin-bottom: 3rem; }
+
+        /* Experience Items */
+        .experience-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+        .exp-card { background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 16px; border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .exp-card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.5); }
+        .exp-title { font-size: 1.4rem; color: #00f0ff; margin-bottom: 0.3rem; }
+        .exp-company { font-size: 1rem; color: #fff; font-weight: 600; margin-bottom: 0.5rem; }
+        .exp-date { font-size: 0.85rem; color: #888; margin-bottom: 1rem; display: inline-block; background: rgba(0, 240, 255, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; border: 1px solid rgba(0, 240, 255, 0.3); }
+        .exp-desc { color: #d0d0d0; font-size: 0.98rem; }
+
+        /* Footer */
+        .footer { background: rgba(5, 11, 20, 0.95); border-top: 1px solid rgba(0, 240, 255, 0.15); padding: 2rem 7%; margin-top: auto; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-text { color: #e0e0e0; font-size: 0.95rem; }
+        .footer-text span { color: #00f0ff; }
+        .footer-socials { display: flex; gap: 1.2rem; }
+        .footer-socials a { display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 50%; color: #00f0ff; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; }
+        .footer-socials a:hover { background: #00f0ff; color: #050b14; box-shadow: 0 0 15px #00f0ff; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .navbar { display: none; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Header Section -->
     <header class="header">
         <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
         <nav class="navbar">
@@ -22,83 +68,42 @@
         </nav>
     </header>
 
+    <!-- Main Content Section -->
     <section>
-        <h2 class="heading">Professional <span>Experience</span></h2>
+        <h2 class="heading">My <span>Experience</span></h2>
+        <p class="sub-heading">Professional Journey & Career Highlights</p>
 
-        <div class="stats-bar">
-            <div class="stat-card">
-                <h4>4,000+</h4>
-                <p>Cameras Supervised</p>
+        <div class="experience-container">
+            <div class="exp-card">
+                <h3 class="exp-title">Data Analytics & Research Assistant</h3>
+                <div class="exp-company">Academic & Independent Projects</div>
+                <div class="exp-date">2025 - Present</div>
+                <p class="exp-desc">Focusing on predictive trendline analysis, data modeling in spreadsheets, and structured technical data visualization.</p>
             </div>
-            <div class="stat-card">
-                <h4>78 VSOs</h4>
-                <p>Team Leadership</p>
-            </div>
-            <div class="stat-card">
-                <h4>24 Sites</h4>
-                <p>Control Room Coverage</p>
-            </div>
-            <div class="stat-card">
-                <h4>12 Leads</h4>
-                <p>B2B Team Managed</p>
-            </div>
-        </div>
-        
-        <div class="timeline">
             
-            <div class="experience-card">
-                <div class="card-header">
-                    <h3>VSO (OP) — Safety & Security Department</h3>
-                    <span class="badge-date"><i class="fa-regular fa-calendar-alt"></i> March 2023 – Present</span>
-                </div>
-                <div class="company"><i class="fa-solid fa-building"></i> United Group (United Corporate Head Office, Dhaka)</div>
-                <ul>
-                    <li><strong>Central Control Operations:</strong> Operate as a central command operator, overseeing surveillance operations across 24 site-specific control rooms nationwide.</li>
-                    <li><strong>Team Leadership:</strong> Supervise and direct a team of 78 Video Surveillance Operators (VSOs), managing coverage for ~4,000 CCTV cameras.</li>
-                    <li><strong>Remote Monitoring & Audits:</strong> Monitor 10 additional non-VSO projects equipped with 400+ cameras; conduct daily health checks and video investigations.</li>
-                    <li><strong>Incident Response:</strong> Coordinate real-time threat response and crisis intervention with operational teams and emergency responders.</li>
-                    <li><strong>Reporting & Systems Maintenance:</strong> Compile daily incident logs for executive management and maintain system health for DVR/NVR servers and network switches.</li>
-                </ul>
-                <div class="skills-used">
-                    <span class="tag">Central Command</span>
-                    <span class="tag">DVR/NVR Servers</span>
-                    <span class="tag">VMS Systems</span>
-                    <span class="tag">Crisis Management</span>
-                    <span class="tag">Network Switches</span>
-                </div>
+            <div class="exp-card">
+                <h3 class="exp-title">Multimedia & AI Visual Storyteller</h3>
+                <div class="exp-company">Creative Digital Content</div>
+                <div class="exp-date">2024 - Present</div>
+                <p class="exp-desc">Specializing in prompt engineering, cinematic visual narrative design, and minimalist artistic sequences.</p>
             </div>
-
-            <div class="experience-card">
-                <div class="card-header">
-                    <h3>Team Leader (Sr. Marketing Officer)</h3>
-                    <span class="badge-date"><i class="fa-regular fa-calendar-alt"></i> June 2018 – Dec 2021</span>
-                </div>
-                <div class="company"><i class="fa-solid fa-building"></i> SADIA IT SOLUTION (Kishoregonj, Nilphamari)</div>
-                <ul>
-                    <li><strong>Remote Team Leadership:</strong> Managed a high-performing remote team of 12 Lead Generation Specialists executing B2B campaigns.</li>
-                    <li><strong>Prospecting & Quality Control:</strong> Directed web research and verified contact details using Hunter.io and ZeroBounce to maintain zero-bounce deliverability.</li>
-                    <li><strong>CRM & Campaign Management:</strong> Handled lead repositories within HubSpot and Salesforce while optimizing open and reply conversion rates.</li>
-                </ul>
-                <div class="skills-used">
-                    <span class="tag">B2B Lead Generation</span>
-                    <span class="tag">HubSpot CRM</span>
-                    <span class="tag">Salesforce</span>
-                    <span class="tag">Team Leadership</span>
-                    <span class="tag">Hunter.io</span>
-                </div>
-            </div>
-
         </div>
     </section>
 
+    <!-- Canvas Animation Script -->
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
         const numberOfParticles = 70;
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -109,20 +114,44 @@
                 this.color = '#00f0ff';
             }
             update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; 
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; 
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; 
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; 
+                ctx.shadowBlur = 8; 
+                ctx.shadowColor = this.color; 
+                ctx.fill();
             }
         }
-        function init() { particlesArray = []; for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); } }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); } requestAnimationFrame(animate); }
-        init(); animate();
+
+        function init() { 
+            particlesArray = []; 
+            for (let i = 0; i < numberOfParticles; i++) { 
+                particlesArray.push(new Particle()); 
+            } 
+        }
+
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            for (let i = 0; i < particlesArray.length; i++) { 
+                particlesArray[i].update(); 
+                particlesArray[i].draw(); 
+            } 
+            requestAnimationFrame(animate); 
+        }
+
+        init(); 
+        animate();
     </script>
 
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-content">
             <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
@@ -134,6 +163,7 @@
         </div>
     </footer>
 
+    <!-- Dynamic Year Script -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
