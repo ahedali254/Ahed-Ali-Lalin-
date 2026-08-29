@@ -7,44 +7,253 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: #050b14; 
+            color: #fff; 
+            overflow-x: hidden; 
+            line-height: 1.6; 
+        }
+        
+        #bg-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -1; 
+            background-color: #050b14; 
+            pointer-events: none; 
+        }
         
         /* Header & Navigation */
-        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
-        .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
-        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
-        .navbar { display: flex; align-items: center; gap: 2rem; }
-        .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
-        .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
-        .navbar a:hover::after, .navbar a.active::after { width: 100%; }
-        .navbar a:hover, .navbar a.active { color: #00f0ff; }
+        .header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            padding: 1rem 7%; 
+            background: rgba(5, 11, 20, 0.85); 
+            backdrop-filter: blur(12px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15); 
+        }
+        
+        .logo { 
+            font-size: 2rem; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 700; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .logo span { 
+            color: #00f0ff; 
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
+        }
+        
+        .navbar { 
+            display: flex; 
+            align-items: center; 
+            gap: 2rem; 
+        }
+        
+        .navbar a { 
+            font-size: 1.05rem; 
+            color: #e0e0e0; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            position: relative; 
+        }
+        
+        .navbar a::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -5px; 
+            left: 0; 
+            width: 0%; 
+            height: 2px; 
+            background: #00f0ff; 
+            transition: 0.3s ease; 
+            box-shadow: 0 0 8px #00f0ff; 
+        }
+        
+        .navbar a:hover::after, .navbar a.active::after { 
+            width: 100%; 
+        }
+        
+        .navbar a:hover, .navbar a.active { 
+            color: #00f0ff; 
+        }
         
         /* Main Section */
-        section { min-height: 100vh; padding: 7rem 7% 4rem; }
-        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
-        .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-        .sub-heading { text-align: center; color: #a0a0a0; font-size: 1.05rem; margin-bottom: 3rem; }
+        section { 
+            min-height: 100vh; 
+            padding: 7rem 7% 4rem; 
+        }
+        
+        .heading { 
+            font-size: 2.6rem; 
+            text-align: center; 
+            margin-bottom: 0.5rem; 
+            font-weight: 700; 
+        }
+        
+        .heading span { 
+            color: #00f0ff; 
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); 
+        }
+        
+        .sub-heading { 
+            text-align: center; 
+            color: #a0a0a0; 
+            font-size: 1.1rem; 
+            margin-bottom: 3.5rem; 
+            letter-spacing: 1px;
+        }
 
         /* Experience Box Layout */
-        .exp-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-        .exp-box { background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 16px; border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); }
-        .exp-box h3 { font-size: 1.3rem; color: #00f0ff; margin-bottom: 0.3rem; }
-        .exp-box h4 { font-size: 1rem; color: #e0e0e0; font-weight: 500; margin-bottom: 0.8rem; }
-        .exp-box p { color: #cccccc; font-size: 0.98rem; }
+        .exp-container { 
+            max-width: 850px; 
+            margin: 0 auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 2rem; 
+        }
+        
+        .exp-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 2.5rem; 
+            border-radius: 16px; 
+            border: 1px solid rgba(0, 240, 255, 0.1); 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(10px); 
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        /* Neon Left Border Animation */
+        .exp-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #00f0ff;
+            box-shadow: 0 0 15px #00f0ff;
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+            transform-origin: bottom;
+        }
+
+        .exp-box:hover::before {
+            transform: scaleY(1);
+        }
+
+        .exp-box:hover {
+            transform: translateY(-5px);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .exp-box h3 { 
+            font-size: 1.4rem; 
+            color: #00f0ff; 
+            margin-bottom: 0.4rem; 
+        }
+        
+        .exp-box h4 { 
+            font-size: 1.05rem; 
+            color: #e0e0e0; 
+            font-weight: 500; 
+            margin-bottom: 1rem; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        .exp-box p { 
+            color: #cccccc; 
+            font-size: 1.05rem; 
+            line-height: 1.7;
+        }
 
         /* Footer Section */
-        .footer { background: rgba(5, 11, 20, 0.95); border-top: 1px solid rgba(0, 240, 255, 0.15); padding: 2rem 7%; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; }
-        .footer-text { color: #e0e0e0; font-size: 0.95rem; }
-        .footer-text span { color: #00f0ff; }
-        .footer-socials { display: flex; gap: 1.2rem; }
-        .footer-socials a { display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 50%; color: #00f0ff; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; }
-        .footer-socials a:hover { background: #00f0ff; color: #050b14; box-shadow: 0 0 15px #00f0ff; transform: translateY(-3px); }
+        .footer { 
+            background: rgba(5, 11, 20, 0.95); 
+            border-top: 1px solid rgba(0, 240, 255, 0.15); 
+            padding: 2rem 7%; 
+        }
+        
+        .footer-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            flex-wrap: wrap; 
+            gap: 1.5rem; 
+        }
+        
+        .footer-text { 
+            color: #e0e0e0; 
+            font-size: 0.95rem; 
+        }
+        
+        .footer-text span { 
+            color: #00f0ff; 
+        }
+        
+        .footer-socials { 
+            display: flex; 
+            gap: 1.2rem; 
+        }
+        
+        .footer-socials a { 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 40px; 
+            height: 40px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(0, 240, 255, 0.3); 
+            border-radius: 50%; 
+            color: #00f0ff; 
+            font-size: 1.1rem; 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+        }
+        
+        .footer-socials a:hover { 
+            background: #00f0ff; 
+            color: #050b14; 
+            box-shadow: 0 0 15px #00f0ff; 
+            transform: translateY(-4px) scale(1.1); 
+        }
 
-        @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } }
-        @media (max-width: 768px) { .navbar { display: none; } .footer-content { flex-direction: column; text-align: center; } }
+        @media (max-width: 991px) { 
+            .header { padding: 1rem 4%; } 
+            section { padding: 6rem 4% 3rem; } 
+        }
+        
+        @media (max-width: 768px) { 
+            .navbar { display: none; } 
+            .footer-content { flex-direction: column; text-align: center; } 
+            .exp-box { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -52,7 +261,7 @@
 
     <!-- Header Section -->
     <header class="header">
-        <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -71,13 +280,13 @@
         <div class="exp-container">
             <div class="exp-box">
                 <h3>Data Analytics & Spreadsheet Modeling</h3>
-                <h4> academic & Personal Projects</h4>
-                <p>Working on data analytics, predictive trendline models, and complex spreadsheet calculations.</p>
+                <h4>Academic & Personal Projects</h4>
+                <p>Working on data analytics, predictive trendline models, and complex spreadsheet calculations to extract meaningful insights and optimize processes.</p>
             </div>
             <div class="exp-box">
                 <h3>Multimedia & AI Visual Storytelling</h3>
                 <h4>Creative Projects</h4>
-                <p>Creating realistic image sequences, cinematic video prompts, and minimalist artistic designs.</p>
+                <p>Creating realistic image sequences, cinematic video prompts, and minimalist artistic designs utilizing advanced AI prompt engineering.</p>
             </div>
         </div>
     </section>
@@ -87,12 +296,13 @@
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
-        const numberOfParticles = 70;
+        const numberOfParticles = 80; // কণা একটু বাড়ানো হয়েছে
 
         function resizeCanvas() { 
             canvas.width = window.innerWidth; 
             canvas.height = window.innerHeight; 
         }
+        
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
@@ -100,14 +310,15 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
                 this.color = '#00f0ff';
             }
             update() {
                 this.x += this.speedX; 
                 this.y += this.speedY;
+                
                 if (this.x > canvas.width) this.x = 0; 
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0; 
@@ -117,7 +328,7 @@
                 ctx.beginPath(); 
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color; 
-                ctx.shadowBlur = 8; 
+                ctx.shadowBlur = 10; 
                 ctx.shadowColor = this.color; 
                 ctx.fill();
             }
@@ -132,9 +343,26 @@
 
         function animate() { 
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            
             for (let i = 0; i < particlesArray.length; i++) { 
                 particlesArray[i].update(); 
                 particlesArray[i].draw(); 
+
+                // কণাগুলোর মাঝে কানেকশন (Line) তৈরি করা
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 120) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${1 - distance/120})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
             } 
             requestAnimationFrame(animate); 
         }
