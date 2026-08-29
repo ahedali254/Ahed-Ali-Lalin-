@@ -31,33 +31,32 @@ body {
 }
 
 /* Base Section Structure */
-section {
-    flex: 1;
-    min-height: 100vh;
-    padding: 8rem 7% 4rem;
-    max-width: 1300px;
-    margin: 0 auto;
+main, section {
+    flex: 1 0 auto;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
 }
 
 /* Dynamic Headings */
 .heading {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
 }
 
 .heading span {
     color: #00f0ff;
-    text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
 }
 
 .sub-heading {
     text-align: center;
     color: #a0aec0;
-    margin-bottom: 3.5rem;
-    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
 }
 
 /* ==========================================
@@ -68,8 +67,8 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem 7%;
-    background: rgba(5, 11, 20, 0.85);
+    padding: 1.2rem 7%;
+    background: rgba(5, 11, 20, 0.9);
     backdrop-filter: blur(12px);
     display: flex;
     justify-content: space-between;
@@ -79,11 +78,10 @@ section {
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    letter-spacing: 0.5px;
 }
 
 .logo span {
@@ -98,7 +96,7 @@ section {
 }
 
 .navbar a {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: #e0e0e0;
     text-decoration: none;
     font-weight: 500;
@@ -115,7 +113,6 @@ section {
     height: 2px;
     background: #00f0ff;
     transition: 0.3s ease;
-    box-shadow: 0 0 8px #00f0ff;
 }
 
 .navbar a:hover::after,
@@ -129,19 +126,21 @@ section {
 }
 
 /* ==========================================
-   ABOUT PAGE STYLES
+   ABOUT PAGE STYLES (FIXED)
    ========================================== */
 .about-content {
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(15, 25, 42, 0.7);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.2);
     border-radius: 16px;
     padding: 2.5rem;
     margin-bottom: 3rem;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .about-content h3 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: #00f0ff;
     margin-bottom: 1rem;
 }
@@ -149,7 +148,7 @@ section {
 .about-content p {
     color: #d1d5db;
     font-size: 1.05rem;
-    margin-bottom: 1rem;
+    line-height: 1.8;
 }
 
 .skills-heading {
@@ -163,32 +162,36 @@ section {
     color: #00f0ff;
 }
 
+/* Skills Grid Display Fixed */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .skill-card {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(0, 240, 255, 0.12);
+    background: rgba(15, 25, 42, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
     padding: 1.5rem;
     border-radius: 12px;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .skill-card:hover {
     border-color: #00f0ff;
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
-    background: rgba(0, 240, 255, 0.03);
+    box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
 }
 
 .skill-card-header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .skill-card-header i {
@@ -201,187 +204,8 @@ section {
     color: #fff;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: #00f0ff;
-    box-shadow: 0 0 10px #00f0ff;
-    border-radius: 10px;
-}
-
 /* ==========================================
-   EXPERIENCE & EDUCATION TIMELINE STYLES
-   ========================================== */
-.stats-bar, .edu-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 3.5rem;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(0, 240, 255, 0.15);
-    padding: 1.2rem;
-    border-radius: 14px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-}
-
-.stat-card i {
-    font-size: 1.8rem;
-    color: #00f0ff;
-    margin-bottom: 0.5rem;
-}
-
-.stat-card h4 {
-    font-size: 1.4rem;
-    color: #00f0ff;
-}
-
-.stat-card p {
-    font-size: 0.88rem;
-    color: #a0aec0;
-}
-
-.timeline {
-    position: relative;
-    padding-left: 2rem;
-    border-left: 2px solid rgba(0, 240, 255, 0.25);
-}
-
-.experience-card, .edu-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.025);
-    border-radius: 16px;
-    padding: 1.8rem 2rem;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(0, 240, 255, 0.12);
-    backdrop-filter: blur(10px);
-    transition: 0.3s ease;
-}
-
-.experience-card::before, .edu-card::before {
-    content: '';
-    position: absolute;
-    left: -2.65rem;
-    top: 1.8rem;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #00f0ff;
-    box-shadow: 0 0 12px #00f0ff;
-}
-
-.experience-card:hover, .edu-card:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 8px 30px rgba(0, 240, 255, 0.08);
-    transform: translateX(5px);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.6rem;
-}
-
-.experience-card h3, .edu-card h3 {
-    font-size: 1.35rem;
-    color: #00f0ff;
-}
-
-.badge-date, .badge-year {
-    background: rgba(0, 240, 255, 0.1);
-    color: #00f0ff;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    font-weight: 600;
-}
-
-.company, .institute {
-    font-size: 1.05rem;
-    color: #e0e0e0;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.company i, .institute i {
-    color: #00f0ff;
-}
-
-.experience-card ul {
-    list-style: none;
-    margin-bottom: 1.2rem;
-}
-
-.experience-card ul li {
-    color: #cbd5e1;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.2rem;
-}
-
-.experience-card ul li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: #00f0ff;
-}
-
-.skills-used {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.tag {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94a3b8;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-}
-
-.details {
-    display: flex;
-    gap: 1.5rem;
-    color: #a0aec0;
-    font-size: 0.92rem;
-    margin-top: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 0.8rem;
-}
-
-.details span {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-.details i {
-    color: #00f0ff;
-}
-
-/* ==========================================
-   MODERN CENTERED FOOTER STYLES
+   FOOTER STYLES
    ========================================== */
 .footer {
     width: 100%;
@@ -406,7 +230,6 @@ section {
 .footer-text {
     font-size: 0.95rem;
     color: #a0aec0;
-    letter-spacing: 0.5px;
 }
 
 .footer-text span {
@@ -416,8 +239,6 @@ section {
 
 .footer-socials {
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
 }
 
@@ -441,47 +262,4 @@ section {
     color: #050b14;
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
     transform: translateY(-3px);
-}
-
-/* ==========================================
-   RESPONSIVE DESIGN (MEDIA QUERIES)
-   ========================================== */
-@media (max-width: 991px) {
-    .header {
-        padding: 1rem 4%;
-    }
-    section {
-        padding: 6rem 4% 3rem;
-    }
-    .timeline {
-        padding-left: 1.5rem;
-    }
-    .experience-card::before, .edu-card::before {
-        left: -2.15rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        display: none; /* মোবাইল নেভিগেশন মেনুর জন্য */
-    }
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .details {
-        flex-direction: column;
-        gap: 0.4rem;
-    }
-    .footer {
-        padding: 1.5rem 4%;
-    }
-    .footer-text {
-        font-size: 0.88rem;
-    }
-    .footer-socials a {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
 }
