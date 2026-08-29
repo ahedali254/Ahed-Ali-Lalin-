@@ -19,7 +19,7 @@
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
         
-        section { min-height: 100vh; padding: 7rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
+        section { min-height: 100vh; padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
         .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
         .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
@@ -33,16 +33,34 @@
             border-radius: 16px; 
             text-align: left; 
             border: 1px solid rgba(0, 240, 255, 0.12); 
-            transition: 0.4s ease; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
+
+        .services-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.08), transparent);
+            transition: 0.6s ease;
+        }
+
+        .services-box:hover::before {
+            left: 100%;
+        }
+
         .services-box:hover { 
-            border-color: #00f0ff; 
-            transform: translateY(-8px); 
-            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.15); 
-            background: rgba(0, 240, 255, 0.035); 
+            border-color: rgba(0, 240, 255, 0.5); 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2); 
+            background: rgba(0, 240, 255, 0.04); 
         }
         
         .icon-wrapper {
@@ -50,13 +68,22 @@
             height: 65px;
             background: rgba(0, 240, 255, 0.08);
             border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+            transition: 0.4s ease;
         }
-        .services-box i { font-size: 2rem; color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+
+        .services-box:hover .icon-wrapper {
+            background: #00f0ff;
+            box-shadow: 0 0 20px #00f0ff;
+            transform: rotateY(180deg);
+        }
+
+        .services-box i { font-size: 2rem; color: #00f0ff; transition: 0.4s ease; }
+        .services-box:hover .icon-wrapper i { color: #050b14; text-shadow: none; }
         
         .services-box h3 { font-size: 1.35rem; margin-bottom: 0.8rem; color: #fff; }
         .services-box p { color: #a0aec0; font-size: 0.95rem; margin-bottom: 1.2rem; }
@@ -75,7 +102,8 @@
             gap: 0.4rem;
             transition: 0.3s ease;
         }
-        .card-link:hover { gap: 0.8rem; }
+        .card-link i { font-size: 0.85rem; }
+        .card-link:hover { gap: 0.8rem; color: #fff; text-shadow: 0 0 8px #00f0ff; }
 
         @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } }
         @media (max-width: 768px) { .navbar { display: none; } }
@@ -85,7 +113,7 @@
     <canvas id="bg-canvas"></canvas>
 
     <header class="header">
-        <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -172,24 +200,15 @@
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
         const numberOfParticles = 70;
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = '#00f0ff';
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
-            }
+                this.y = Math
