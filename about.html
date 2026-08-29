@@ -20,19 +20,90 @@
         section { min-height: 100vh; padding: 7rem 7% 4rem; }
         .heading { font-size: 2.4rem; text-align: center; margin-bottom: 3rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-        .about { display: flex; justify-content: center; align-items: center; gap: 4rem; }
+        .about { display: flex; justify-content: center; align-items: flex-start; gap: 4rem; }
         .about-content { max-width: 650px; }
         .about-content p { font-size: 1.05rem; color: #e0e0e0; margin-bottom: 1.2rem; }
-        .skills-grid { margin-top: 1.8rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
-        .skill-card { background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.15); transition: 0.3s ease; }
-        .skill-card:hover { border-color: #00f0ff; background: rgba(0, 240, 255, 0.04); }
-        .skill-card h4 { color: #00f0ff; margin-bottom: 0.4rem; font-size: 1.1rem; }
         
-        /* লম্বালম্বী (Portrait) ছবির জন্য সিএসএস */
+        /* Glassmorphism & Skill Cards */
+        .skills-grid { margin-top: 1.8rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+        .skill-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(10px);
+            padding: 1.2rem; 
+            border-radius: 12px; 
+            border: 1px solid rgba(0, 240, 255, 0.15); 
+            transition: 0.3s ease; 
+        }
+        .skill-card:hover { border-color: #00f0ff; background: rgba(0, 240, 255, 0.05); transform: translateY(-3px); }
+        .skill-card h4 { color: #00f0ff; margin-bottom: 0.4rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* New Features Styling */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .metric-box {
+            background: rgba(0, 240, 255, 0.04);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metric-box h3 { font-size: 1.8rem; color: #00f0ff; font-weight: 700; }
+        .metric-box p { font-size: 0.85rem; color: #a0aec0; margin-bottom: 0; }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #00f0ff;
+            padding: 0.8rem 1.2rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #cbd5e0;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.6rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #00f0ff;
+            color: #050b14;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        .btn-primary:hover {
+            background: #00b8cc;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+        }
+        .btn-secondary {
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            color: #00f0ff;
+            background: transparent;
+        }
+        .btn-secondary:hover {
+            background: rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Image CSS */
         .about-img {
             flex-shrink: 0;
             display: flex;
             justify-content: center;
+            position: sticky;
+            top: 8rem;
         }
         .about-img img { 
             width: 320px; 
@@ -49,8 +120,16 @@
         @media (max-width: 991px) { 
             .header { padding: 1rem 4%; } 
             section { padding: 6rem 4% 3rem; } 
-            .about { flex-direction: column; text-align: center; } 
+            .about { flex-direction: column; align-items: center; text-align: center; } 
+            .about-img { position: static; }
             .about-img img { width: 280px; height: 420px; }
+            .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+            .cta-group { justify-content: center; }
+            .heading { text-align: center !important; }
+        }
+        @media (max-width: 600px) {
+            .metrics-grid { grid-template-columns: 1fr; }
+            .cta-group { flex-direction: column; }
         }
         @media (max-width: 768px) { .navbar { display: none; } }
     </style>
@@ -79,27 +158,51 @@
             <p>I specialize in managing large-scale command centers, central control room operations, and remote team logistics. With a solid track record of supervising cross-functional teams, I oversee surveillance coverage for over 4,000 CCTV cameras across major nationwide infrastructure projects.</p>
             <p>My expertise extends to threat management, real-time crisis response, network hardware configuration (DVR/NVR, Cat6 cabling), and digital lead generation operations.</p>
 
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <h3>4,000+</h3>
+                    <p>Cameras Monitored</p>
+                </div>
+                <div class="metric-box">
+                    <h3>24/7</h3>
+                    <p>Control Operations</p>
+                </div>
+                <div class="metric-box">
+                    <h3>100%</h3>
+                    <p>Crisis Response</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Combining technical precision in surveillance infrastructure with creative storytelling and art."</p>
+            </div>
+
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h4>Surveillance Operations</h4>
+                    <h4><i class="fa-solid fa-video"></i> Surveillance Operations</h4>
                     <p>Central Control Room, Enterprise VMS, Remote Auditing, Risk Escalation.</p>
                 </div>
                 <div class="skill-card">
-                    <h4>Network & Hardware</h4>
+                    <h4><i class="fa-solid fa-network-wired"></i> Network & Hardware</h4>
                     <p>DVR/NVR Configuration, Cat5e/Cat6 Cabling, Switch Setup, Troubleshooting.</p>
                 </div>
                 <div class="skill-card">
-                    <h4>Digital Marketing & Lead Gen</h4>
+                    <h4><i class="fa-solid fa-chart-line"></i> Digital Marketing & Lead Gen</h4>
                     <p>LinkedIn Sales Navigator, B2B Prospecting, HubSpot, Salesforce CRM.</p>
                 </div>
                 <div class="skill-card">
-                    <h4>Creative & Performing Arts</h4>
+                    <h4><i class="fa-solid fa-masks-theater"></i> Creative & Performing Arts</h4>
                     <p>Creative Writing, Recitation (আবৃত্তি), Anchoring/Hosting (উপস্থাপনা), Acting (অভিনয়).</p>
                 </div>
                 <div class="skill-card">
-                    <h4>Software & Tools</h4>
+                    <h4><i class="fa-solid fa-laptop-code"></i> Software & Tools</h4>
                     <p>MS Excel, MS Word, Photoshop, Illustrator, Basic WordPress.</p>
                 </div>
+            </div>
+
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+                <a href="#" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
             </div>
         </div>
     </section>
