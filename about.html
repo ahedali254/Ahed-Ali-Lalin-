@@ -11,17 +11,47 @@
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        /* Navigation Header */
+        /* Fixed Header Nav */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
-        .logo { font-size: 1.8rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
-        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        
+        /* Dynamic Dynamic Neon Logo Style */
+        .logo {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: #00f0ff;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+
+        .logo-accent {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
         .navbar { display: flex; align-items: center; gap: 2rem; }
         .navbar a { font-size: 1rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
         
-        /* Main Container */
+        /* Main Section Area */
         .main-content { 
             padding-top: 100px; 
             padding-bottom: 4rem; 
@@ -36,7 +66,6 @@
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
         .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
 
-        /* About Section Block */
         .about-content {
             background: rgba(255, 255, 255, 0.025);
             backdrop-filter: blur(10px);
@@ -49,7 +78,6 @@
         .about-content h3 { font-size: 1.6rem; color: #00f0ff; margin-bottom: 1rem; }
         .about-content p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1rem; }
 
-        /* Information Grid Highlights */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -79,7 +107,6 @@
             font-size: 0.95rem;
         }
 
-        /* Technical & Creative Skills Section */
         .skills-heading { font-size: 1.8rem; margin: 3rem 0 1.5rem; text-align: center; color: #fff; }
         .skills-heading span { color: #00f0ff; }
 
@@ -138,7 +165,6 @@
             border-radius: 10px;
         }
 
-        /* Footer Section */
         .footer { 
             background: rgba(5, 11, 20, 0.95); 
             border-top: 1px solid rgba(0, 240, 255, 0.15); 
@@ -196,9 +222,11 @@
 <body>
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Header -->
     <header class="header">
-        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-terminal logo-icon"></i> Ahad<span class="logo-accent"> Ali Lelin</span>
+        </a>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About</a>
@@ -219,7 +247,6 @@
             <p>I am Ahad Ali Lelin, a multi-skilled professional bridging the gap between technical operations and creative media. My expertise spans Surveillance Operations Management, Central Control Room Architecture, and B2B Digital Workflows—complemented by strong capabilities in Modern Web Design, Photoshop & Visual Graphics, Professional Presentation Design, and Video Post-Production.</p>
         </div>
 
-        <!-- Highlight Info Grid -->
         <div class="info-grid">
             <div class="info-box">
                 <h4><i class="fa-solid fa-layer-group"></i> Surveillance & Operations</h4>
@@ -312,7 +339,7 @@
         </div>
     </footer>
 
-    <!-- Background Canvas Animation Script -->
+    <!-- Canvas Animation Script -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
