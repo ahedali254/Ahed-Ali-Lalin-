@@ -9,6 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
@@ -17,15 +18,65 @@
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
-        section { min-height: 100vh; padding: 7rem 7% 4rem; }
-        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 3rem; font-weight: 700; }
+        
+        section { min-height: 100vh; padding: 7rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
+        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+        .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
+
         .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .services-box { background: rgba(255, 255, 255, 0.02); padding: 2.5rem 1.8rem; border-radius: 16px; text-align: center; border: 1px solid rgba(0, 240, 255, 0.1); transition: 0.4s ease; }
-        .services-box:hover { border-color: #00f0ff; transform: translateY(-7px); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15); background: rgba(0, 240, 255, 0.03); }
-        .services-box i { font-size: 3.2rem; color: #00f0ff; margin-bottom: 1.2rem; text-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
-        .services-box h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
-        .services-box p { color: #b0b0b0; font-size: 0.98rem; }
+        
+        .services-box { 
+            background: rgba(255, 255, 255, 0.025); 
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 1.8rem; 
+            border-radius: 16px; 
+            text-align: left; 
+            border: 1px solid rgba(0, 240, 255, 0.12); 
+            transition: 0.4s ease; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .services-box:hover { 
+            border-color: #00f0ff; 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.15); 
+            background: rgba(0, 240, 255, 0.035); 
+        }
+        
+        .icon-wrapper {
+            width: 65px;
+            height: 65px;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .services-box i { font-size: 2rem; color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        
+        .services-box h3 { font-size: 1.35rem; margin-bottom: 0.8rem; color: #fff; }
+        .services-box p { color: #a0aec0; font-size: 0.95rem; margin-bottom: 1.2rem; }
+        
+        .feature-list { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+        .feature-list li { font-size: 0.88rem; color: #d1d5db; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .feature-list li i { font-size: 0.75rem; color: #00f0ff; text-shadow: none; }
+
+        .card-link {
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.3s ease;
+        }
+        .card-link:hover { gap: 0.8rem; }
+
         @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } }
         @media (max-width: 768px) { .navbar { display: none; } }
     </style>
@@ -47,24 +98,71 @@
 
     <section>
         <h2 class="heading">My <span>Services & Expertise</span></h2>
-        
+        <p class="sub-heading">Providing high-end surveillance operations, IT infrastructure, lead generation, and creative performances.</p>
+
         <div class="services-container">
             <div class="services-box">
-                <i class="fa-solid fa-eye"></i>
-                <h3>Surveillance Operations</h3>
-                <p>Central control room setup, enterprise VMS management, live camera monitoring, and high-level incident escalation protocols.</p>
+                <div>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3>Surveillance Operations</h3>
+                    <p>Central control room management and nationwide CCTV monitoring solutions for high-security facilities.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Enterprise VMS Setup & Auditing</li>
+                        <li><i class="fa-solid fa-check"></i> 4,000+ Camera Live Coverage</li>
+                        <li><i class="fa-solid fa-check"></i> Real-time Incident & Risk Escalation</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
             <div class="services-box">
-                <i class="fa-solid fa-network-wired"></i>
-                <h3>Hardware & Network Support</h3>
-                <p>NVR/DVR configuration, Cat5e/Cat6 network cabling, RJ45 crimping, network switch setup, and hardware maintenance.</p>
+                <div>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3>Hardware & Network Support</h3>
+                    <p>Robust physical networking and server setup tailored for control room hardware environments.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> DVR / NVR Server Configuration</li>
+                        <li><i class="fa-solid fa-check"></i> Cat5e / Cat6 Cabling & Switch Setup</li>
+                        <li><i class="fa-solid fa-check"></i> Hardware Maintenance & Troubleshooting</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
             <div class="services-box">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>B2B Lead Gen & CRM</h3>
-                <p>Targeted B2B prospecting, lead database verification, campaign analytics, and data optimization in HubSpot/Salesforce.</p>
+                <div>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>B2B Lead Gen & CRM</h3>
+                    <p>Data-driven lead generation strategies to optimize outreach and convert target B2B prospects.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Targeted Prospecting & Email Finding</li>
+                        <li><i class="fa-solid fa-check"></i> Zero-Bounce List Verification</li>
+                        <li><i class="fa-solid fa-check"></i> HubSpot & Salesforce Pipeline Mgmt</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="services-box">
+                <div>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-masks-theater"></i>
+                    </div>
+                    <h3>Creative & Performing Arts</h3>
+                    <p>Expressive art leadership including live event hosting, stage acting, voice recitation, and scripting.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Event Anchoring & Stage Hosting</li>
+                        <li><i class="fa-solid fa-check"></i> Bengali Recitation (আবৃত্তি)</li>
+                        <li><i class="fa-solid fa-check"></i> Dramatic Acting & Creative Scripting</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -95,10 +193,3 @@
                 ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
             }
-        }
-        function init() { particlesArray = []; for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); } }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); } requestAnimationFrame(animate); }
-        init(); animate();
-    </script>
-</body>
-</html>
