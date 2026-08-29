@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Ahad Ali Lelin</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        /* Fixed Header Nav */
+        /* Navigation Header */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 1.8rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
@@ -20,7 +21,7 @@
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
         
-        /* Main Section Area */
+        /* Main Container */
         .main-content { 
             padding-top: 100px; 
             padding-bottom: 4rem; 
@@ -35,6 +36,7 @@
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
         .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
 
+        /* About Section Block */
         .about-content {
             background: rgba(255, 255, 255, 0.025);
             backdrop-filter: blur(10px);
@@ -47,6 +49,37 @@
         .about-content h3 { font-size: 1.6rem; color: #00f0ff; margin-bottom: 1rem; }
         .about-content p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1rem; }
 
+        /* Information Grid Highlights */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .info-box h4 {
+            color: #00f0ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box p {
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        /* Technical & Creative Skills Section */
         .skills-heading { font-size: 1.8rem; margin: 3rem 0 1.5rem; text-align: center; color: #fff; }
         .skills-heading span { color: #00f0ff; }
 
@@ -163,6 +196,7 @@
 <body>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Header Navigation -->
     <header class="header">
         <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
@@ -175,6 +209,7 @@
         </nav>
     </header>
 
+    <!-- Main Content -->
     <main class="main-content">
         <h2 class="heading">About <span>Me</span></h2>
         <p class="sub-heading">Surveillance Lead, IT Specialist, and Creative Visual Content Creator</p>
@@ -182,6 +217,22 @@
         <div class="about-content">
             <h3>Who I Am</h3>
             <p>I am Ahad Ali Lelin, a multi-skilled professional bridging the gap between technical operations and creative media. My expertise spans Surveillance Operations Management, Central Control Room Architecture, and B2B Digital Workflows—complemented by strong capabilities in Modern Web Design, Photoshop & Visual Graphics, Professional Presentation Design, and Video Post-Production.</p>
+        </div>
+
+        <!-- Highlight Info Grid -->
+        <div class="info-grid">
+            <div class="info-box">
+                <h4><i class="fa-solid fa-layer-group"></i> Surveillance & Operations</h4>
+                <p>Specialized in Central Control Room setup, VMS operations, and managing widespread security infrastructure efficiently.</p>
+            </div>
+            <div class="info-box">
+                <h4><i class="fa-solid fa-laptop-code"></i> Technical & B2B Solutions</h4>
+                <p>Experienced in B2B Lead Generation workflows, CRM implementations, and web interface designing.</p>
+            </div>
+            <div class="info-box">
+                <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Creative Media</h4>
+                <p>Skilled in visual media production, advanced Photoshop editing, motion, and presentation design.</p>
+            </div>
         </div>
 
         <h3 class="skills-heading">Technical & <span>Creative Skills</span></h3>
@@ -212,4 +263,133 @@
                     <i class="fa-solid fa-palette"></i>
                     <h4>Graphics & Canva</h4>
                 </div>
-                <div
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-film"></i>
+                    <h4>Video Editing</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-file-powerpoint"></i>
+                    <h4>Presentation Design</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 95%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-video"></i>
+                    <h4>Surveillance & VMS</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 95%;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/ahedali.co" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Background Canvas Animation Script -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        const numberOfParticles = 60;
+
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
+        resizeCanvas();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            init();
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = '#00f0ff';
+            }
+            update() {
+                this.x += this.speedX; 
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; 
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; 
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; 
+                ctx.fill();
+            }
+        }
+
+        function init() { 
+            particlesArray = []; 
+            for (let i = 0; i < numberOfParticles; i++) { 
+                particlesArray.push(new Particle()); 
+            } 
+        }
+
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            for (let i = 0; i < particlesArray.length; i++) { 
+                particlesArray[i].update(); 
+                particlesArray[i].draw(); 
+
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.8 - distance/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            } 
+            requestAnimationFrame(animate); 
+        }
+
+        init(); 
+        animate();
+    </script>
+</body>
+</html>
