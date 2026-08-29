@@ -104,14 +104,14 @@
             <h1>I'm <span>Ahad Ali Lelin</span></h1>
             <div class="typing-title">I am a <span id="typed-text"></span></div>
             
-            <p>Result-driven Surveillance Operations Lead with extensive experience in central command center management, 4,000+ CCTV camera network monitoring, and enterprise IT & B2B digital workflows.</p>
+            <p>Versatile professional bridging the gap between technical operations and creative media. Expert in Surveillance Operations Management, Central Control Rooms, Modern Web Design, Photoshop Graphics, and Video Editing.</p>
             
             <div class="btn-group">
                 <a href="contact.html" class="btn"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
                 <a href="contact.html" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contact Me</a>
             </div>
 
-            <!-- Updated Social Media Links -->
+            <!-- Social Media Links -->
             <div class="social-media">
                 <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -131,6 +131,10 @@
                     <h3>24</h3>
                     <p>Control Rooms</p>
                 </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Creative Execution</p>
+                </div>
             </div>
         </div>
 
@@ -142,7 +146,14 @@
     </section>
 
     <script>
-        const textArray = ["Surveillance Operations Lead", "Central Control Room Expert", "B2B Lead Gen Specialist"];
+        // Updated typing animation array with technical & creative roles
+        const textArray = [
+            "Surveillance Operations Lead", 
+            "Central Control Room Expert", 
+            "Modern Web Designer", 
+            "Graphic & Video Creator", 
+            "B2B Workflow Specialist"
+        ];
         let textIndex = 0;
         let charIndex = 0;
         const typedTextSpan = document.getElementById("typed-text");
@@ -176,9 +187,11 @@
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
         const numberOfParticles = 70;
+
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -198,6 +211,7 @@
                 ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
             }
         }
+
         function init() { particlesArray = []; for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); } }
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); } requestAnimationFrame(animate); }
         init(); animate();
