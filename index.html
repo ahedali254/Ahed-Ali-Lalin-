@@ -7,23 +7,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
+        body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
-        .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
+        /* Fixed Header Always Visible */
+        .header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            padding: 1rem 7%; 
+            background: rgba(5, 11, 20, 0.95); 
+            backdrop-filter: blur(12px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15); 
+        }
+
+        .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
         
-        .navbar { display: flex; align-items: center; gap: 2rem; }
-        .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .navbar { display: flex; align-items: center; gap: 1.8rem; }
+        .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; white-space: nowrap; }
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
-        
-        /* Mobile Menu Toggle Icon */
-        #menu-icon { font-size: 1.8rem; color: #00f0ff; cursor: pointer; display: none; }
 
-        section { min-height: 100vh; padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
+        section { min-height: calc(100vh - 120px); padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; width: 100%; flex: 1; }
         
         .home { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
         .home-content { max-width: 650px; }
@@ -72,40 +84,103 @@
         .stat-item h3 { font-size: 1.6rem; color: #00f0ff; font-weight: 700; }
         .stat-item p { font-size: 0.85rem; color: #a0aec0; }
 
-        /* Responsive Styles for Mobile */
+        /* Footer Styling */
+        .footer {
+            background: rgba(5, 11, 20, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 1.5rem 7%;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-text {
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        .footer-text span {
+            color: #00f0ff;
+            font-weight: 600;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #00f0ff;
+            transform: translateY(-2px);
+        }
+
+        /* Tablet Responsive Styles */
         @media (max-width: 991px) { 
-            .header { padding: 1rem 4%; } 
-            section { padding: 6rem 4% 3rem; } 
+            .header { padding: 0.8rem 4%; } 
+            section { padding: 6.5rem 4% 3rem; } 
             .home { flex-direction: column-reverse; text-align: center; gap: 3rem; } 
             .btn-group, .social-media, .hero-stats { justify-content: center; } 
             .typing-title { min-height: auto; }
             .img-box { width: 280px; height: 280px; }
         }
 
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) { 
-            #menu-icon { display: block; }
-            
-            .navbar {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 1rem 7%;
-                background: rgba(5, 11, 20, 0.98);
-                backdrop-filter: blur(15px);
-                border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            .header {
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 0.6rem;
+                padding: 0.8rem 3%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .navbar {
+                display: flex !important;
+                width: 100%;
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+                padding-bottom: 0.4rem;
                 gap: 1.2rem;
-                display: none; /* Hidden by default */
+                -webkit-overflow-scrolling: touch;
             }
 
-            .navbar.active {
-                display: flex; /* Show when active class is toggled */
+            .navbar::-webkit-scrollbar {
+                display: none;
             }
 
-            .home-content h1 { font-size: 2.5rem; } 
+            .navbar a {
+                font-size: 0.95rem;
+                padding: 0.2rem 0;
+            }
+
+            section { padding-top: 8.5rem; }
+            .home-content h1 { font-size: 2.2rem; } 
             .hero-stats { flex-wrap: wrap; gap: 1rem; }
+
+            .footer-content {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -115,9 +190,6 @@
     <header class="header">
         <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         
-        <!-- Mobile Menu Icon -->
-        <i class="fa-solid fa-bars" id="menu-icon"></i>
-
         <nav class="navbar" id="navbar">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
@@ -174,23 +246,21 @@
         </div>
     </section>
 
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Mobile Navbar Toggle Functionality
-        const menuIcon = document.getElementById('menu-icon');
-        const navbar = document.getElementById('navbar');
-
-        menuIcon.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            menuIcon.classList.toggle('fa-xmark'); // Icon changes to 'X' on open
-        });
-
-        // Close navbar when clicking on a link (for smooth navigation)
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', () => {
-                navbar.classList.remove('active');
-                menuIcon.classList.remove('fa-xmark');
-            });
-        });
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
 
         // Typing animation
         const textArray = [
@@ -229,7 +299,7 @@
             if (textArray.length) setTimeout(type, 1000);
         });
 
-        // Canvas Background Animation
+        // Background Particles Canvas Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
