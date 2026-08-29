@@ -9,6 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
@@ -17,28 +18,76 @@
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
-        section { min-height: 100vh; padding: 7rem 7% 4rem; }
-        .home { display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
-        .home-content { max-width: 600px; }
-        .home-content h3 { font-size: 1.5rem; font-weight: 600; color: #a0a0a0; }
-        .home-content h1 { font-size: 3.5rem; font-weight: 800; margin: 0.2rem 0; color: #00f0ff; text-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
-        .home-content p { font-size: 1.1rem; margin: 1.2rem 0 2rem; color: #d1d5db; }
-        .social-media { display: flex; gap: 1.2rem; margin-bottom: 2.2rem; }
-        .social-media a { display: inline-flex; justify-content: center; align-items: center; width: 3rem; height: 3rem; background: rgba(0, 240, 255, 0.05); border: 2px solid #00f0ff; border-radius: 50%; font-size: 1.2rem; color: #00f0ff; text-decoration: none; transition: 0.4s ease; }
+        
+        section { min-height: 100vh; padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
+        
+        .home { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+        .home-content { max-width: 650px; }
+        .greeting-badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .home-content h1 { font-size: 3.6rem; font-weight: 800; margin-bottom: 0.4rem; color: #fff; line-height: 1.1; }
+        .home-content h1 span { color: #00f0ff; text-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
+        .typing-title { font-size: 1.4rem; font-weight: 600; color: #a0aec0; margin-bottom: 1.2rem; min-height: 2.2rem; }
+        .typing-title span { color: #00f0ff; border-right: 2px solid #00f0ff; padding-right: 5px; animation: blink 0.75s infinite; }
+
+        @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #00f0ff; } }
+
+        .home-content p { font-size: 1.05rem; margin-bottom: 2rem; color: #d1d5db; line-height: 1.7; }
+        
+        .btn-group { display: flex; gap: 1.2rem; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2.2rem; background: #00f0ff; border-radius: 30px; box-shadow: 0 0 18px rgba(0, 240, 255, 0.35); font-size: 1.05rem; color: #050b14; text-decoration: none; font-weight: 700; transition: 0.3s ease; border: 2px solid #00f0ff; }
+        .btn:hover { box-shadow: 0 0 28px #00f0ff; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: #00f0ff; box-shadow: none; }
+        .btn-outline:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+
+        .social-media { display: flex; gap: 1rem; }
+        .social-media a { display: inline-flex; justify-content: center; align-items: center; width: 2.8rem; height: 2.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 50%; font-size: 1.1rem; color: #00f0ff; text-decoration: none; transition: 0.3s ease; }
         .social-media a:hover { background: #00f0ff; color: #050b14; box-shadow: 0 0 20px #00f0ff; transform: translateY(-3px); }
-        .btn { display: inline-block; padding: 0.8rem 2.5rem; background: #00f0ff; border-radius: 30px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); font-size: 1.05rem; color: #050b14; letter-spacing: 0.5px; text-decoration: none; font-weight: 700; transition: 0.3s ease; }
-        .btn:hover { box-shadow: 0 0 25px #00f0ff; transform: scale(1.03); }
-        .home-img img { max-width: 360px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); border: 2px solid rgba(0, 240, 255, 0.4); object-fit: cover; transition: 0.4s ease; }
-        .home-img img:hover { box-shadow: 0 0 45px rgba(0, 240, 255, 0.5); }
-        @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } .home { flex-direction: column-reverse; text-align: center; gap: 2.5rem; } .social-media { justify-content: center; } }
-        @media (max-width: 768px) { .navbar { display: none; } .home-content h1 { font-size: 2.6rem; } }
+        
+        .home-img { position: relative; display: flex; justify-content: center; align-items: center; }
+        .img-box { position: relative; width: 340px; height: 340px; border-radius: 50%; padding: 8px; background: linear-gradient(135deg, #00f0ff, transparent, #00f0ff); box-shadow: 0 0 35px rgba(0, 240, 255, 0.25); }
+        .img-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #050b14; }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .stat-item h3 { font-size: 1.6rem; color: #00f0ff; font-weight: 700; }
+        .stat-item p { font-size: 0.85rem; color: #a0aec0; }
+
+        @media (max-width: 991px) { 
+            .header { padding: 1rem 4%; } 
+            section { padding: 6rem 4% 3rem; } 
+            .home { flex-direction: column-reverse; text-align: center; gap: 3rem; } 
+            .btn-group, .social-media, .hero-stats { justify-content: center; } 
+            .typing-title { min-height: auto; }
+            .img-box { width: 280px; height: 280px; }
+        }
+        @media (max-width: 768px) { 
+            .navbar { display: none; } 
+            .home-content h1 { font-size: 2.5rem; } 
+            .hero-stats { flex-wrap: wrap; gap: 1rem; }
+        }
     </style>
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
 
     <header class="header">
-        <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
@@ -51,27 +100,78 @@
 
     <section class="home">
         <div class="home-content">
-            <h3>Hello, It's Me</h3>
-            <h1>Ahed Ali Lelin</h1>
-            <h3><span>Surveillance Operations Lead & Tech Specialist</span></h3>
-            <p>Welcome to my portfolio. Dedicated and result-driven Surveillance Operations Lead with expertise in central control room management, enterprise video surveillance infrastructure, data analytics, and digital workflows.</p>
+            <div class="greeting-badge"><i class="fa-solid fa-sparkles"></i> Welcome to my official portfolio</div>
+            <h1>I'm <span>Ahad Ali Lelin</span></h1>
+            <div class="typing-title">I am a <span id="typed-text"></span></div>
             
-            <div class="social-media">
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:lalin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <p>Result-driven Surveillance Operations Lead with extensive experience in central command center management, 4,000+ CCTV camera network monitoring, and enterprise IT & B2B digital workflows.</p>
+            
+            <div class="btn-group">
+                <a href="contact.html" class="btn"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+                <a href="contact.html" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contact Me</a>
             </div>
 
-            <a href="contact.html" class="btn">Hire Me</a>
+            <!-- Updated Social Media Links -->
+            <div class="social-media">
+                <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>4,000+</h3>
+                    <p>Cameras Monitored</p>
+                </div>
+                <div class="stat-item">
+                    <h3>78+</h3>
+                    <p>Team Members Led</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24</h3>
+                    <p>Control Rooms</p>
+                </div>
+            </div>
         </div>
 
         <div class="home-img">
-            <img src="profile.jpg" alt="Ahad Ali Lelin">
+            <div class="img-box">
+                <img src="profile.jpg" alt="Ahad Ali Lelin">
+            </div>
         </div>
     </section>
 
     <script>
+        const textArray = ["Surveillance Operations Lead", "Central Control Room Expert", "B2B Lead Gen Specialist"];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typedTextSpan = document.getElementById("typed-text");
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typedTextSpan.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (textArray.length) setTimeout(type, 1000);
+        });
+
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
