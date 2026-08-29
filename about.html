@@ -9,6 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
@@ -17,120 +18,83 @@
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
-        section { min-height: 100vh; padding: 7rem 7% 4rem; }
-        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 3rem; font-weight: 700; }
+        
+        section { min-height: 100vh; padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
+        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-        .about { display: flex; justify-content: center; align-items: flex-start; gap: 4rem; }
-        .about-content { max-width: 650px; }
-        .about-content p { font-size: 1.05rem; color: #e0e0e0; margin-bottom: 1.2rem; }
-        
-        /* Glassmorphism & Skill Cards */
-        .skills-grid { margin-top: 1.8rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
-        .skill-card { 
-            background: rgba(255, 255, 255, 0.03); 
+        .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.025);
             backdrop-filter: blur(10px);
-            padding: 1.2rem; 
-            border-radius: 12px; 
-            border: 1px solid rgba(0, 240, 255, 0.15); 
-            transition: 0.3s ease; 
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
         }
-        .skill-card:hover { border-color: #00f0ff; background: rgba(0, 240, 255, 0.05); transform: translateY(-3px); }
-        .skill-card h4 { color: #00f0ff; margin-bottom: 0.4rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-        
-        /* New Features Styling */
-        .metrics-grid {
+
+        .about-content h3 { font-size: 1.6rem; color: #00f0ff; margin-bottom: 1rem; }
+        .about-content p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1rem; }
+
+        .skills-heading { font-size: 1.8rem; margin: 3rem 0 1.5rem; text-align: center; color: #fff; }
+        .skills-heading span { color: #00f0ff; }
+
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .metric-box {
-            background: rgba(0, 240, 255, 0.04);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .metric-box h3 { font-size: 1.8rem; color: #00f0ff; font-weight: 700; }
-        .metric-box p { font-size: 0.85rem; color: #a0aec0; margin-bottom: 0; }
-
-        .quote-box {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid #00f0ff;
-            padding: 0.8rem 1.2rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: #cbd5e0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .cta-group {
+        .skill-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            border-color: #00f0ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
+            background: rgba(0, 240, 255, 0.03);
+        }
+
+        .skill-card-header {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .btn {
-            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.6rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
-        .btn-primary {
-            background: #00f0ff;
-            color: #050b14;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-        .btn-primary:hover {
-            background: #00b8cc;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-        }
-        .btn-secondary {
-            border: 1px solid rgba(0, 240, 255, 0.4);
+
+        .skill-card-header i {
+            font-size: 1.8rem;
             color: #00f0ff;
-            background: transparent;
         }
-        .btn-secondary:hover {
-            background: rgba(0, 240, 255, 0.1);
+
+        .skill-card-header h4 {
+            font-size: 1.1rem;
+            color: #fff;
         }
-        
-        /* Image CSS */
-        .about-img {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 8rem;
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
-        .about-img img { 
-            width: 320px; 
-            height: 480px; 
-            border-radius: 20px; 
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); 
-            border: 2px solid rgba(0, 240, 255, 0.4); 
-            object-fit: cover; 
-            object-position: top center; 
-            transition: 0.4s ease; 
+
+        .progress {
+            height: 100%;
+            background: #00f0ff;
+            box-shadow: 0 0 10px #00f0ff;
+            border-radius: 10px;
         }
-        .about-img img:hover { box-shadow: 0 0 45px rgba(0, 240, 255, 0.5); }
-        
-        @media (max-width: 991px) { 
-            .header { padding: 1rem 4%; } 
-            section { padding: 6rem 4% 3rem; } 
-            .about { flex-direction: column; align-items: center; text-align: center; } 
-            .about-img { position: static; }
-            .about-img img { width: 280px; height: 420px; }
-            .metrics-grid { grid-template-columns: repeat(3, 1fr); }
-            .cta-group { justify-content: center; }
-            .heading { text-align: center !important; }
-        }
-        @media (max-width: 600px) {
-            .metrics-grid { grid-template-columns: 1fr; }
-            .cta-group { flex-direction: column; }
-        }
+
+        @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } }
         @media (max-width: 768px) { .navbar { display: none; } }
     </style>
 </head>
@@ -138,7 +102,7 @@
     <canvas id="bg-canvas"></canvas>
 
     <header class="header">
-        <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About</a>
@@ -149,60 +113,82 @@
         </nav>
     </header>
 
-    <section class="about">
-        <div class="about-img">
-            <img src="about.jpg" alt="Ahed Ali Lelin">
-        </div>
+    <section>
+        <h2 class="heading">About <span>Me</span></h2>
+        <p class="sub-heading">Surveillance Lead, IT Specialist, and Creative Visual Content Creator</p>
+
         <div class="about-content">
-            <h2 class="heading" style="text-align: left;">About <span>Me</span></h2>
-            <p>I specialize in managing large-scale command centers, central control room operations, and remote team logistics. With a solid track record of supervising cross-functional teams, I oversee surveillance coverage for over 4,000 CCTV cameras across major nationwide infrastructure projects.</p>
-            <p>My expertise extends to threat management, real-time crisis response, network hardware configuration (DVR/NVR, Cat6 cabling), and digital lead generation operations.</p>
+            <h3>Who I Am</h3>
+            <p>I am Ahad Ali Lelin, a versatile professional skilled in surveillance operations management, central control room setups, and B2B digital workflows. Beyond operations and hardware management, I have strong technical expertise in modern web design, graphic creation, video editing, and digital presentation design.</p>
+        </div>
 
-            <div class="metrics-grid">
-                <div class="metric-box">
-                    <h3>4,000+</h3>
-                    <p>Cameras Monitored</p>
+        <h3 class="skills-heading">Technical & <span>Creative Skills</span></h3>
+
+        <div class="skills-grid">
+            <!-- Web Design -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-code"></i>
+                    <h4>Website Design</h4>
                 </div>
-                <div class="metric-box">
-                    <h3>24/7</h3>
-                    <p>Control Operations</p>
-                </div>
-                <div class="metric-box">
-                    <h3>100%</h3>
-                    <p>Crisis Response</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
                 </div>
             </div>
 
-            <div class="quote-box">
-                <p>"Combining technical precision in surveillance infrastructure with creative storytelling and art."</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4><i class="fa-solid fa-video"></i> Surveillance Operations</h4>
-                    <p>Central Control Room, Enterprise VMS, Remote Auditing, Risk Escalation.</p>
+            <!-- Photoshop -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-file-image"></i>
+                    <h4>Photoshop Editing</h4>
                 </div>
-                <div class="skill-card">
-                    <h4><i class="fa-solid fa-network-wired"></i> Network & Hardware</h4>
-                    <p>DVR/NVR Configuration, Cat5e/Cat6 Cabling, Switch Setup, Troubleshooting.</p>
-                </div>
-                <div class="skill-card">
-                    <h4><i class="fa-solid fa-chart-line"></i> Digital Marketing & Lead Gen</h4>
-                    <p>LinkedIn Sales Navigator, B2B Prospecting, HubSpot, Salesforce CRM.</p>
-                </div>
-                <div class="skill-card">
-                    <h4><i class="fa-solid fa-masks-theater"></i> Creative & Performing Arts</h4>
-                    <p>Creative Writing, Recitation (আবৃত্তি), Anchoring/Hosting (উপস্থাপনা), Acting (অভিনয়).</p>
-                </div>
-                <div class="skill-card">
-                    <h4><i class="fa-solid fa-laptop-code"></i> Software & Tools</h4>
-                    <p>MS Excel, MS Word, Photoshop, Illustrator, Basic WordPress.</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
                 </div>
             </div>
 
-            <div class="cta-group">
-                <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
-                <a href="#" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+            <!-- Graphic Design / Canva -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-palette"></i>
+                    <h4>Graphics & Canva</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Video Editing -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-film"></i>
+                    <h4>Video Editing</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
+                </div>
+            </div>
+
+            <!-- Presentation Design -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-file-powerpoint"></i>
+                    <h4>Presentation Design</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 95%;"></div>
+                </div>
+            </div>
+
+            <!-- Surveillance & VMS -->
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-video"></i>
+                    <h4>Surveillance & VMS</h4>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 95%;"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -212,9 +198,14 @@
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
         const numberOfParticles = 70;
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -225,18 +216,41 @@
                 this.color = '#00f0ff';
             }
             update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; 
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; 
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; 
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; 
+                ctx.shadowBlur = 8; 
+                ctx.shadowColor = this.color; 
+                ctx.fill();
             }
         }
-        function init() { particlesArray = []; for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); } }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); } requestAnimationFrame(animate); }
-        init(); animate();
+
+        function init() { 
+            particlesArray = []; 
+            for (let i = 0; i < numberOfParticles; i++) { 
+                particlesArray.push(new Particle()); 
+            } 
+        }
+
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            for (let i = 0; i < particlesArray.length; i++) { 
+                particlesArray[i].update(); 
+                particlesArray[i].draw(); 
+            } 
+            requestAnimationFrame(animate); 
+        }
+
+        init(); 
+        animate();
     </script>
 </body>
 </html>
