@@ -4,17 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Ahad Ali Lelin</title>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- External CSS Link -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
+        /* Fixed Header Nav */
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
+        .logo { font-size: 1.8rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
+        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        .navbar { display: flex; align-items: center; gap: 2rem; }
+        .navbar a { font-size: 1rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
+        .navbar a:hover::after, .navbar a.active::after { width: 100%; }
+        .navbar a:hover, .navbar a.active { color: #00f0ff; }
+        
+        /* Main Section Area */
+        .main-content { 
+            padding-top: 100px; 
+            padding-bottom: 4rem; 
+            padding-left: 7%; 
+            padding-right: 7%; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            position: relative;
+            z-index: 1;
+        }
+        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
+        .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+        .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 3.5rem; font-size: 1.05rem; }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-content h3 { font-size: 1.6rem; color: #00f0ff; margin-bottom: 1rem; }
+        .about-content p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1rem; }
+
+        .skills-heading { font-size: 1.8rem; margin: 3rem 0 1.5rem; text-align: center; color: #fff; }
+        .skills-heading span { color: #00f0ff; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            border-color: #00f0ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
+            background: rgba(0, 240, 255, 0.03);
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card-header i {
+            font-size: 1.8rem;
+            color: #00f0ff;
+        }
+
+        .skill-card-header h4 {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #00f0ff;
+            box-shadow: 0 0 10px #00f0ff;
+            border-radius: 10px;
+        }
+
+        /* Footer Section */
+        .footer { 
+            background: rgba(5, 11, 20, 0.95); 
+            border-top: 1px solid rgba(0, 240, 255, 0.15); 
+            padding: 1.8rem 7%; 
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+        }
+        
+        .footer-text { color: #a0aec0; font-size: 0.9rem; }
+        .footer-text span { color: #00f0ff; }
+        
+        .footer-socials { display: flex; gap: 1rem; }
+        .footer-socials a { 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 36px; 
+            height: 36px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(0, 240, 255, 0.3); 
+            border-radius: 50%; 
+            color: #00f0ff; 
+            font-size: 1rem; 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+        }
+        
+        .footer-socials a:hover { 
+            background: #00f0ff; 
+            color: #050b14; 
+            box-shadow: 0 0 10px #00f0ff; 
+        }
+
+        @media (max-width: 991px) { 
+            .header { padding: 1rem 4%; } 
+            .main-content { padding-left: 5%; padding-right: 5%; }
+        }
+        @media (max-width: 768px) { 
+            .navbar { display: none; }
+            .main-content { padding-top: 90px; }
+            .footer-content { flex-direction: column; text-align: center; } 
+        }
+    </style>
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Header Section -->
     <header class="header">
-        <a href="index.html" class="logo">Ahed<span> Ali Lelin.</span></a>
+        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About</a>
@@ -25,8 +175,7 @@
         </nav>
     </header>
 
-    <!-- Main Content Section -->
-    <section>
+    <main class="main-content">
         <h2 class="heading">About <span>Me</span></h2>
         <p class="sub-heading">Surveillance Lead, IT Specialist, and Creative Visual Content Creator</p>
 
@@ -63,119 +212,4 @@
                     <i class="fa-solid fa-palette"></i>
                     <h4>Graphics & Canva</h4>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 90%;"></div>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fa-solid fa-film"></i>
-                    <h4>Video Editing</h4>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 85%;"></div>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fa-solid fa-file-powerpoint"></i>
-                    <h4>Presentation Design</h4>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 95%;"></div>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fa-solid fa-video"></i>
-                    <h4>Surveillance & VMS</h4>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 95%;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Canvas Animation Script -->
-    <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
-        const numberOfParticles = 70;
-
-        function resizeCanvas() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = '#00f0ff';
-            }
-            update() {
-                this.x += this.speedX; 
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; 
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; 
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.beginPath(); 
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color; 
-                ctx.shadowBlur = 8; 
-                ctx.shadowColor = this.color; 
-                ctx.fill();
-            }
-        }
-
-        function init() { 
-            particlesArray = []; 
-            for (let i = 0; i < numberOfParticles; i++) { 
-                particlesArray.push(new Particle()); 
-            } 
-        }
-
-        function animate() { 
-            ctx.clearRect(0, 0, canvas.width, canvas.height); 
-            for (let i = 0; i < particlesArray.length; i++) { 
-                particlesArray[i].update(); 
-                particlesArray[i].draw(); 
-            } 
-            requestAnimationFrame(animate); 
-        }
-
-        init(); 
-        animate();
-    </script>
-
-    <!-- Modern Centered Footer Section -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Dynamic Year Script -->
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+                <div
