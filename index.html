@@ -10,15 +10,19 @@
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        
         .navbar { display: flex; align-items: center; gap: 2rem; }
         .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
         
+        /* Mobile Menu Toggle Icon */
+        #menu-icon { font-size: 1.8rem; color: #00f0ff; cursor: pointer; display: none; }
+
         section { min-height: 100vh; padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; }
         
         .home { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
@@ -68,6 +72,7 @@
         .stat-item h3 { font-size: 1.6rem; color: #00f0ff; font-weight: 700; }
         .stat-item p { font-size: 0.85rem; color: #a0aec0; }
 
+        /* Responsive Styles for Mobile */
         @media (max-width: 991px) { 
             .header { padding: 1rem 4%; } 
             section { padding: 6rem 4% 3rem; } 
@@ -76,8 +81,29 @@
             .typing-title { min-height: auto; }
             .img-box { width: 280px; height: 280px; }
         }
+
         @media (max-width: 768px) { 
-            .navbar { display: none; } 
+            #menu-icon { display: block; }
+            
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 7%;
+                background: rgba(5, 11, 20, 0.98);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+                display: none; /* Hidden by default */
+            }
+
+            .navbar.active {
+                display: flex; /* Show when active class is toggled */
+            }
+
             .home-content h1 { font-size: 2.5rem; } 
             .hero-stats { flex-wrap: wrap; gap: 1rem; }
         }
@@ -88,7 +114,11 @@
 
     <header class="header">
         <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
-        <nav class="navbar">
+        
+        <!-- Mobile Menu Icon -->
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+
+        <nav class="navbar" id="navbar">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
             <a href="experience.html">Experience</a>
@@ -111,7 +141,6 @@
                 <a href="contact.html" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contact Me</a>
             </div>
 
-            <!-- Social Media Links -->
             <div class="social-media">
                 <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -146,7 +175,24 @@
     </section>
 
     <script>
-        // Updated typing animation array with technical & creative roles
+        // Mobile Navbar Toggle Functionality
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.getElementById('navbar');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('fa-xmark'); // Icon changes to 'X' on open
+        });
+
+        // Close navbar when clicking on a link (for smooth navigation)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                menuIcon.classList.remove('fa-xmark');
+            });
+        });
+
+        // Typing animation
         const textArray = [
             "Surveillance Operations Lead", 
             "Central Control Room Expert", 
@@ -183,6 +229,7 @@
             if (textArray.length) setTimeout(type, 1000);
         });
 
+        // Canvas Background Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
