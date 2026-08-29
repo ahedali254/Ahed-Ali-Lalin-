@@ -9,6 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
+        
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         .logo { font-size: 2rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
         .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
@@ -17,17 +18,130 @@
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
-        section { min-height: 100vh; padding: 7rem 7% 4rem; }
-        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 3rem; font-weight: 700; }
+        
+        section { min-height: 100vh; padding: 7rem 12% 4rem; max-width: 1200px; margin: 0 auto; }
+        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 2rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-        .experience-card { background: rgba(255, 255, 255, 0.02); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 1px solid rgba(0, 240, 255, 0.12); backdrop-filter: blur(5px); transition: 0.3s ease; }
-        .experience-card:hover { border-color: rgba(0, 240, 255, 0.4); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); }
+
+        /* Stats Dashboard Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 3.5rem;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 1.2rem;
+            border-radius: 14px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        .stat-card:hover { border-color: #00f0ff; transform: translateY(-3px); }
+        .stat-card h4 { font-size: 1.8rem; color: #00f0ff; font-weight: 700; }
+        .stat-card p { font-size: 0.85rem; color: #a0a0a0; }
+
+        /* Modern Timeline Layout */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .experience-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            backdrop-filter: blur(8px);
+            transition: 0.3s ease;
+        }
+        
+        /* Timeline Node Dot */
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            left: -2.65rem;
+            top: 2rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #00f0ff;
+            box-shadow: 0 0 12px #00f0ff;
+        }
+
+        .experience-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
         .experience-card h3 { font-size: 1.5rem; color: #00f0ff; }
-        .experience-card .company { font-size: 0.95rem; color: #a0a0a0; margin-bottom: 1.2rem; font-weight: 500; }
-        .experience-card ul { padding-left: 1.2rem; }
+        
+        .badge-date {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            font-weight: 500;
+        }
+
+        .experience-card .company { 
+            font-size: 1rem; 
+            color: #e0e0e0; 
+            margin-bottom: 1.2rem; 
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experience-card ul { padding-left: 1.2rem; margin-bottom: 1.5rem; }
         .experience-card ul li { margin-bottom: 0.6rem; color: #d1d5db; }
-        @media (max-width: 991px) { .header { padding: 1rem 4%; } section { padding: 6rem 4% 3rem; } }
-        @media (max-width: 768px) { .navbar { display: none; } }
+        .experience-card ul li strong { color: #fff; }
+
+        /* Technology & Skill Badges */
+        .skills-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1rem;
+        }
+        .tag {
+            background: rgba(255, 255, 255, 0.04);
+            color: #a0aec0;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 991px) { 
+            .header { padding: 1rem 4%; } 
+            section { padding: 6rem 5% 3rem; }
+            .timeline { padding-left: 1.5rem; }
+            .experience-card::before { left: -2.15rem; }
+        }
+        @media (max-width: 768px) { 
+            .navbar { display: none; }
+            .card-header { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
@@ -47,27 +161,70 @@
 
     <section>
         <h2 class="heading">Professional <span>Experience</span></h2>
-        
-        <div class="experience-card">
-            <h3>VSO (OP) — Safety Operations Department</h3>
-            <div class="company">United Group (United Corporate Head Office, Dhaka) | March 15, 2023 – Present</div>
-            <ul>
-                <li><strong>Central Control Operations:</strong> Operate as a central command operator, overseeing surveillance operations across 24 site-specific control rooms nationwide.</li>
-                <li><strong>Team Leadership:</strong> Supervise and direct a team of 78 Video Surveillance Operators (VSOs), managing coverage for ~4,000 CCTV cameras.</li>
-                <li><strong>Remote Monitoring & Audits:</strong> Monitor 10 additional non-VSO projects equipped with 400+ cameras; conduct daily health checks and video investigations.</li>
-                <li><strong>Incident Response:</strong> Coordinate real-time threat response and crisis intervention with operational teams and emergency responders.</li>
-                <li><strong>Reporting & Systems Maintenance:</strong> Compile daily incident logs for executive management and maintain system health for DVR/NVR servers and network switches.</li>
-            </ul>
-        </div>
 
-        <div class="experience-card">
-            <h3>Team Leader (Sr. Marketing Officer)</h3>
-            <div class="company">SADIA IT SOLUTION (Kishoregonj, Nilphamari) | June 01, 2018 – December 31, 2021</div>
-            <ul>
-                <li><strong>Remote Team Leadership:</strong> Managed a high-performing remote team of 12 Lead Generation Specialists executing B2B campaigns.</li>
-                <li><strong>Prospecting & Quality Control:</strong> Directed web research and verified contact details using Hunter.io and ZeroBounce to maintain zero-bounce deliverability.</li>
-                <li><strong>CRM & Campaign Management:</strong> Handled lead repositories within HubSpot and Salesforce while optimizing open and reply conversion rates.</li>
-            </ul>
+        <div class="stats-bar">
+            <div class="stat-card">
+                <h4>4,000+</h4>
+                <p>Cameras Supervised</p>
+            </div>
+            <div class="stat-card">
+                <h4>78 VSOs</h4>
+                <p>Team Leadership</p>
+            </div>
+            <div class="stat-card">
+                <h4>24 Sites</h4>
+                <p>Control Room Coverage</p>
+            </div>
+            <div class="stat-card">
+                <h4>12 Leads</h4>
+                <p>B2B Team Managed</p>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>VSO (OP) — Safety & Security Department</h3>
+                    <span class="badge-date"><i class="fa-regular fa-calendar-alt"></i> March 2023 – Present</span>
+                </div>
+                <div class="company"><i class="fa-solid fa-building"></i> United Group (United Corporate Head Office, Dhaka)</div>
+                <ul>
+                    <li><strong>Central Control Operations:</strong> Operate as a central command operator, overseeing surveillance operations across 24 site-specific control rooms nationwide.</li>
+                    <li><strong>Team Leadership:</strong> Supervise and direct a team of 78 Video Surveillance Operators (VSOs), managing coverage for ~4,000 CCTV cameras.</li>
+                    <li><strong>Remote Monitoring & Audits:</strong> Monitor 10 additional non-VSO projects equipped with 400+ cameras; conduct daily health checks and video investigations.</li>
+                    <li><strong>Incident Response:</strong> Coordinate real-time threat response and crisis intervention with operational teams and emergency responders.</li>
+                    <li><strong>Reporting & Systems Maintenance:</strong> Compile daily incident logs for executive management and maintain system health for DVR/NVR servers and network switches.</li>
+                </ul>
+                <div class="skills-used">
+                    <span class="tag">Central Command</span>
+                    <span class="tag">DVR/NVR Servers</span>
+                    <span class="tag">VMS Systems</span>
+                    <span class="tag">Crisis Management</span>
+                    <span class="tag">Network Switches</span>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>Team Leader (Sr. Marketing Officer)</h3>
+                    <span class="badge-date"><i class="fa-regular fa-calendar-alt"></i> June 2018 – Dec 2021</span>
+                </div>
+                <div class="company"><i class="fa-solid fa-building"></i> SADIA IT SOLUTION (Kishoregonj, Nilphamari)</div>
+                <ul>
+                    <li><strong>Remote Team Leadership:</strong> Managed a high-performing remote team of 12 Lead Generation Specialists executing B2B campaigns.</li>
+                    <li><strong>Prospecting & Quality Control:</strong> Directed web research and verified contact details using Hunter.io and ZeroBounce to maintain zero-bounce deliverability.</li>
+                    <li><strong>CRM & Campaign Management:</strong> Handled lead repositories within HubSpot and Salesforce while optimizing open and reply conversion rates.</li>
+                </ul>
+                <div class="skills-used">
+                    <span class="tag">B2B Lead Generation</span>
+                    <span class="tag">HubSpot CRM</span>
+                    <span class="tag">Salesforce</span>
+                    <span class="tag">Team Leadership</span>
+                    <span class="tag">Hunter.io</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
