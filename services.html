@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,8 +71,24 @@
         </div>
     </section>
 
-    <!-- Canvas Animation Script -->
+    <!-- Modern Centered Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/ahedali.co" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com" aria-label="Email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optimized Scripts -->
     <script>
+        // Set Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Canvas Particle Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
@@ -83,7 +99,15 @@
             canvas.height = window.innerHeight; 
         }
         resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvas();
+                init();
+            }, 200);
+        });
 
         class Particle {
             constructor() {
@@ -92,7 +116,7 @@
                 this.size = Math.random() * 3 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.5;
                 this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = '#00f0ff';
+                this.color = 'rgba(0, 240, 255, 0.8)'; // Opacity optimized for performance
             }
             update() {
                 this.x += this.speedX; 
@@ -106,8 +130,6 @@
                 ctx.beginPath(); 
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color; 
-                ctx.shadowBlur = 8; 
-                ctx.shadowColor = this.color; 
                 ctx.fill();
             }
         }
@@ -130,23 +152,6 @@
 
         init(); 
         animate();
-    </script>
-
-    <!-- Modern Centered Footer Section -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Dynamic Year Script -->
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
