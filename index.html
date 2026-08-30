@@ -26,7 +26,7 @@
             border-bottom: 1px solid rgba(0, 240, 255, 0.15); 
         }
 
-        /* Updated Dynamic Neon Logo Styles */
+        /* Dynamic Neon Logo Styles */
         .logo { 
             font-size: 1.8rem; 
             color: #ffffff; 
@@ -216,7 +216,6 @@
 <body>
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Header with Dynamic Logo -->
     <header class="header">
         <a href="index.html" class="logo">
             <i class="fa-solid fa-terminal logo-icon"></i> Ahad<span class="logo-accent"> Ali Lelin</span>
@@ -278,7 +277,6 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-content">
             <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
@@ -331,39 +329,81 @@
             if (textArray.length) setTimeout(type, 1000);
         });
 
-        // Background Particles Canvas Animation
+        // Background Particles Canvas Animation (Services Page Logic with Connecting Lines)
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
-        const numberOfParticles = 70;
+        const numberOfParticles = 60;
 
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
         resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            init();
+        });
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
+                this.size = Math.random() * 2 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.5;
                 this.speedY = (Math.random() - 0.5) * 0.5;
                 this.color = '#00f0ff';
             }
             update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; 
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; 
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; 
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color; ctx.shadowBlur = 8; ctx.shadowColor = this.color; ctx.fill();
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; 
+                ctx.fill();
             }
         }
 
-        function init() { particlesArray = []; for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); } }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); } requestAnimationFrame(animate); }
-        init(); animate();
+        function init() { 
+            particlesArray = []; 
+            for (let i = 0; i < numberOfParticles; i++) { 
+                particlesArray.push(new Particle()); 
+            } 
+        }
+
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            for (let i = 0; i < particlesArray.length; i++) { 
+                particlesArray[i].update(); 
+                particlesArray[i].draw(); 
+
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.8 - distance/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            } 
+            requestAnimationFrame(animate); 
+        }
+
+        init(); 
+        animate();
     </script>
 </body>
 </html>
