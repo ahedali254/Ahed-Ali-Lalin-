@@ -13,7 +13,6 @@
         /* Header & Navigation */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
         
-        /* Dynamic Neon Logo Styles (Matched with Home Page) */
         .logo { 
             font-size: 1.8rem; 
             color: #ffffff; 
@@ -61,7 +60,7 @@
 
         /* Main Section Fixes */
         .main-content { 
-            padding-top: 100px; /* Fixed Header Space */
+            padding-top: 100px; 
             padding-bottom: 4rem;
             padding-left: 7%;
             padding-right: 7%;
@@ -75,8 +74,13 @@
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
         .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 2.5rem; font-size: 1rem; }
 
-        /* Services Grid Layout */
-        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
+        /* Services Grid Layout Fix */
+        .services-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 1.8rem;
+            align-items: stretch; /* Equal Height Fix */
+        }
         
         .services-box { 
             background: rgba(15, 23, 42, 0.6); 
@@ -89,6 +93,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
         }
 
         .services-box:hover { 
@@ -126,6 +131,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+            margin-top: auto; /* Push to Bottom */
         }
         .card-link:hover { gap: 0.7rem; color: #fff; }
 
@@ -228,6 +234,7 @@
         <p class="sub-heading">Providing high-end surveillance, IT operations, lead generation, web design, and creative media solutions.</p>
 
         <div class="services-container">
+            <!-- Box 1 -->
             <div class="services-box">
                 <div>
                     <div class="icon-wrapper"><i class="fa-solid fa-eye"></i></div>
@@ -242,9 +249,179 @@
                 <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
+            <!-- Box 2 -->
             <div class="services-box">
                 <div>
                     <div class="icon-wrapper"><i class="fa-solid fa-network-wired"></i></div>
                     <h3>Hardware & Network Support</h3>
                     <p>Robust physical networking and server setup tailored for control room hardware environments.</p>
-                    <ul class="feature
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> DVR / NVR Server Configuration</li>
+                        <li><i class="fa-solid fa-check"></i> Cat5e / Cat6 Cabling & Switch Setup</li>
+                        <li><i class="fa-solid fa-check"></i> Hardware Maintenance & Troubleshooting</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="services-box">
+                <div>
+                    <div class="icon-wrapper"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>B2B Lead Gen & CRM</h3>
+                    <p>Data-driven lead generation strategies to optimize outreach and convert target B2B prospects.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Targeted Prospecting & Email Finding</li>
+                        <li><i class="fa-solid fa-check"></i> Zero-Bounce List Verification</li>
+                        <li><i class="fa-solid fa-check"></i> HubSpot & Salesforce Pipeline Mgmt</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="services-box">
+                <div>
+                    <div class="icon-wrapper"><i class="fa-solid fa-code"></i></div>
+                    <h3>Website Design</h3>
+                    <p>Modern, responsive, and aesthetically pleasing website designs that establish strong online branding.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Responsive Web Layouts</li>
+                        <li><i class="fa-solid fa-check"></i> Clean HTML, CSS & JS Code</li>
+                        <li><i class="fa-solid fa-check"></i> User-Friendly Interface Design</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="services-box">
+                <div>
+                    <div class="icon-wrapper"><i class="fa-solid fa-palette"></i></div>
+                    <h3>Graphic Design & Editing</h3>
+                    <p>Professional visual content creation using Photoshop and Canva for branding and promotional needs.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Photoshop Image Editing</li>
+                        <li><i class="fa-solid fa-check"></i> Canva Visuals & Social Media Graphics</li>
+                        <li><i class="fa-solid fa-check"></i> Brand Banners & Assets</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Box 6 -->
+            <div class="services-box">
+                <div>
+                    <div class="icon-wrapper"><i class="fa-solid fa-video"></i></div>
+                    <h3>Video Editing</h3>
+                    <p>Creative post-production including video cutting, sound polishing, and smooth transition effects.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Social Media & Event Promo Videos</li>
+                        <li><i class="fa-solid fa-check"></i> Motion Transitions & Text Overlay</li>
+                        <li><i class="fa-solid fa-check"></i> Audio Balancing & Color Adjustment</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="card-link">Inquire Service <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/ahedali.co" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.getElementById('navbar');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('fa-xmark');
+        });
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        const numberOfParticles = 60;
+
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
+        resizeCanvas();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            init();
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = '#00f0ff';
+            }
+            update() {
+                this.x += this.speedX; 
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; 
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; 
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; 
+                ctx.fill();
+            }
+        }
+
+        function init() { 
+            particlesArray = []; 
+            for (let i = 0; i < numberOfParticles; i++) { 
+                particlesArray.push(new Particle()); 
+            } 
+        }
+
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            for (let i = 0; i < particlesArray.length; i++) { 
+                particlesArray[i].update(); 
+                particlesArray[i].draw(); 
+
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.8 - distance/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            } 
+            requestAnimationFrame(animate); 
+        }
+
+        init(); 
+        animate();
+    </script>
+</body>
+</html>
