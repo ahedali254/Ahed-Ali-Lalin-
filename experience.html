@@ -4,21 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience - Ahad Ali Lelin</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        /* Fixed Header */
+        /* Fixed Header Nav */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 7%; background: rgba(5, 11, 20, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
-        .logo { font-size: 1.8rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
-        .logo span { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        
+        /* Dynamic Neon Logo Style (Updated matching About page) */
+        .logo {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: #00f0ff;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+
+        .logo-accent {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
         .navbar { display: flex; align-items: center; gap: 2rem; }
         .navbar a { font-size: 1rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; }
         .navbar a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: #00f0ff; transition: 0.3s ease; box-shadow: 0 0 8px #00f0ff; }
         .navbar a:hover::after, .navbar a.active::after { width: 100%; }
         .navbar a:hover, .navbar a.active { color: #00f0ff; }
+        
+        /* Mobile Menu Icon Added */
+        #menu-icon {
+            font-size: 1.8rem;
+            color: #00f0ff;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.3s ease;
+        }
         
         /* Main Section Area */
         .main-content { 
@@ -187,14 +227,34 @@
             box-shadow: 0 0 10px #00f0ff; 
         }
 
+        /* Responsive Styles (Updated matching About page) */
         @media (max-width: 991px) { 
             .header { padding: 1rem 4%; } 
             .main-content { padding-left: 5%; padding-right: 5%; }
             .timeline { padding-left: 1.5rem; }
             .experience-card::before { left: -2.15rem; }
+            .footer { padding: 1.8rem 4%; }
         }
         @media (max-width: 768px) { 
-            .navbar { display: none; }
+            #menu-icon { display: block; }
+
+            .navbar { 
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 4%;
+                background: rgba(5, 11, 20, 0.95);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            } 
+
+            .navbar.active { display: flex; }
             .card-header { flex-direction: column; }
             .main-content { padding-top: 90px; }
             .footer-content { flex-direction: column; text-align: center; } 
@@ -204,9 +264,13 @@
 <body>
     <canvas id="bg-canvas"></canvas>
 
+    <!-- Header Navigation (Updated with Icon & ID) -->
     <header class="header">
-        <a href="index.html" class="logo">Ahad<span> Ali Lelin.</span></a>
-        <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-terminal logo-icon"></i> Ahad<span class="logo-accent"> Ali Lelin</span>
+        </a>
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+        <nav class="navbar" id="navbar">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="experience.html" class="active">Experience</a>
@@ -296,9 +360,20 @@
         </div>
     </footer>
 
+    <!-- Script updated with Mobile Menu Functionality -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        /* Mobile Menu Toggle Logic */
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.getElementById('navbar');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('fa-xmark');
+        });
+
+        /* Canvas Particle Background */
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
