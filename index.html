@@ -10,7 +10,6 @@
         body { background-color: #050b14; color: #fff; overflow-x: hidden; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #050b14; pointer-events: none; }
         
-        /* Fixed Header Always Visible */
         .header { 
             position: fixed; 
             top: 0; 
@@ -26,7 +25,6 @@
             border-bottom: 1px solid rgba(0, 240, 255, 0.15); 
         }
 
-        /* Dynamic Neon Logo Styles */
         .logo { 
             font-size: 1.8rem; 
             color: #ffffff; 
@@ -44,7 +42,7 @@
             font-size: 1.5rem;
             color: #00f0ff;
             filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
-            transition: transform 0.4s ease, color 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
         .logo-accent {
@@ -54,9 +52,7 @@
             filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
         }
 
-        .logo:hover .logo-icon {
-            transform: rotate(15deg) scale(1.1);
-        }
+        .logo:hover .logo-icon { transform: rotate(15deg) scale(1.1); }
         
         .navbar { display: flex; align-items: center; gap: 1.8rem; }
         .navbar a { font-size: 1.05rem; color: #e0e0e0; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; white-space: nowrap; }
@@ -67,28 +63,44 @@
         section { min-height: calc(100vh - 120px); padding: 8rem 7% 4rem; max-width: 1300px; margin: 0 auto; width: 100%; flex: 1; }
         
         .home { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
-        .home-content { max-width: 650px; }
+        .home-content { max-width: 680px; }
         .greeting-badge {
             display: inline-block;
             background: rgba(0, 240, 255, 0.08);
             border: 1px solid rgba(0, 240, 255, 0.3);
             color: #00f0ff;
-            padding: 0.3rem 1rem;
+            padding: 0.38rem 1.1rem;
             border-radius: 20px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        .home-content h1 { font-size: 3.6rem; font-weight: 800; margin-bottom: 0.4rem; color: #fff; line-height: 1.1; }
+        .home-content h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.4rem; color: #fff; line-height: 1.1; }
         .home-content h1 span { color: #00f0ff; text-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
         .typing-title { font-size: 1.4rem; font-weight: 600; color: #a0aec0; margin-bottom: 1.2rem; min-height: 2.2rem; }
         .typing-title span { color: #00f0ff; border-right: 2px solid #00f0ff; padding-right: 5px; animation: blink 0.75s infinite; }
 
         @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #00f0ff; } }
 
-        .home-content p { font-size: 1.05rem; margin-bottom: 2rem; color: #d1d5db; line-height: 1.7; }
+        .home-content p { font-size: 1.02rem; margin-bottom: 1.5rem; color: #d1d5db; line-height: 1.75; }
         
+        /* Modern Objective Box */
+        .objective-card {
+            background: rgba(0, 240, 255, 0.03);
+            border-left: 3px solid #00f0ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .objective-card i { color: #00f0ff; font-size: 1.2rem; }
+
         .btn-group { display: flex; gap: 1.2rem; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2.2rem; background: #00f0ff; border-radius: 30px; box-shadow: 0 0 18px rgba(0, 240, 255, 0.35); font-size: 1.05rem; color: #050b14; text-decoration: none; font-weight: 700; transition: 0.3s ease; border: 2px solid #00f0ff; }
         .btn:hover { box-shadow: 0 0 28px #00f0ff; transform: translateY(-2px); }
@@ -113,7 +125,6 @@
         .stat-item h3 { font-size: 1.6rem; color: #00f0ff; font-weight: 700; }
         .stat-item p { font-size: 0.85rem; color: #a0aec0; }
 
-        /* Footer Styling */
         .footer {
             background: rgba(5, 11, 20, 0.95);
             backdrop-filter: blur(12px);
@@ -133,83 +144,31 @@
             gap: 1rem;
         }
 
-        .footer-text {
-            color: #a0aec0;
-            font-size: 0.95rem;
-        }
+        .footer-text { color: #a0aec0; font-size: 0.95rem; }
+        .footer-text span { color: #00f0ff; font-weight: 600; }
+        .footer-socials { display: flex; gap: 1rem; }
+        .footer-socials a { color: #a0aec0; font-size: 1.1rem; transition: all 0.3s ease; }
+        .footer-socials a:hover { color: #00f0ff; transform: translateY(-2px); }
 
-        .footer-text span {
-            color: #00f0ff;
-            font-weight: 600;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-socials a {
-            color: #a0aec0;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-socials a:hover {
-            color: #00f0ff;
-            transform: translateY(-2px);
-        }
-
-        /* Tablet Responsive Styles */
         @media (max-width: 991px) { 
             .header { padding: 0.8rem 4%; } 
             section { padding: 6.5rem 4% 3rem; } 
             .home { flex-direction: column-reverse; text-align: center; gap: 3rem; } 
             .btn-group, .social-media, .hero-stats { justify-content: center; } 
-            .typing-title { min-height: auto; }
+            .objective-card { text-align: left; }
             .img-box { width: 280px; height: 280px; }
         }
 
-        /* Mobile Responsive Styles */
         @media (max-width: 768px) { 
-            .header {
-                flex-direction: column;
-                gap: 0.6rem;
-                padding: 0.8rem 3%;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .navbar {
-                display: flex !important;
-                width: 100%;
-                overflow-x: auto;
-                white-space: nowrap;
-                justify-content: flex-start;
-                padding-bottom: 0.4rem;
-                gap: 1.2rem;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .navbar::-webkit-scrollbar {
-                display: none;
-            }
-
-            .navbar a {
-                font-size: 0.95rem;
-                padding: 0.2rem 0;
-            }
-
+            .header { flex-direction: column; gap: 0.6rem; padding: 0.8rem 3%; }
+            .logo { font-size: 1.5rem; }
+            .navbar { display: flex !important; width: 100%; overflow-x: auto; white-space: nowrap; justify-content: flex-start; padding-bottom: 0.4rem; gap: 1.2rem; }
+            .navbar::-webkit-scrollbar { display: none; }
+            .navbar a { font-size: 0.95rem; }
             section { padding-top: 8.5rem; }
             .home-content h1 { font-size: 2.2rem; } 
             .hero-stats { flex-wrap: wrap; gap: 1rem; }
-
-            .footer-content {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-            }
+            .footer-content { flex-direction: column; justify-content: center; text-align: center; }
         }
     </style>
 </head>
@@ -233,11 +192,16 @@
 
     <section class="home">
         <div class="home-content">
-            <div class="greeting-badge"><i class="fa-solid fa-sparkles"></i> Welcome to my official portfolio</div>
+            <div class="greeting-badge"><i class="fa-solid fa-bullseye"></i> CAREER OBJECTIVE</div>
             <h1>I'm <span>Ahad Ali Lelin</span></h1>
             <div class="typing-title">I am a <span id="typed-text"></span></div>
             
-            <p>Versatile professional bridging the gap between technical operations and creative media. Expert in Surveillance Operations Management, Central Control Rooms, Modern Web Design, Photoshop Graphics, and Video Editing.</p>
+            <p>Results-driven Operations & Administrative Professional with 7+ years of experience in multi-site operations, supervising large-scale teams (78+ staff), facility oversight, and data management. Seeking an Administrative Officer / Operations Executive role to leverage my analytical skills, leadership, and operational expertise to drive organizational efficiency.</p>
+
+            <div class="objective-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Ready to optimize organizational workflow, multi-site logistics, and administrative performance.</span>
+            </div>
             
             <div class="btn-group">
                 <a href="contact.html" class="btn"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
@@ -248,24 +212,25 @@
                 <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="tel:01620090273" title="Call"><i class="fa-solid fa-phone"></i></a>
             </div>
 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <h3>4,000+</h3>
-                    <p>Cameras Monitored</p>
+                    <h3>7+ Yrs</h3>
+                    <p>Experience</p>
                 </div>
                 <div class="stat-item">
                     <h3>78+</h3>
-                    <p>Team Members Led</p>
+                    <p>Staff Supervised</p>
                 </div>
                 <div class="stat-item">
                     <h3>24</h3>
-                    <p>Control Rooms</p>
+                    <p>Locations Managed</p>
                 </div>
                 <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Creative Execution</p>
+                    <h3>4,000+</h3>
+                    <p>CCTV Cameras</p>
                 </div>
             </div>
         </div>
@@ -281,24 +246,22 @@
         <div class="footer-content">
             <p class="footer-text">&copy; <span id="year"></span> <span>Ahad Ali Lelin</span>. All Rights Reserved.</p>
             <div class="footer-socials">
-                <a href="https://www.facebook.com/ahedali.co" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:lalin1622214@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.facebook.com/ahedali.co" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/ahed-ali-1a391a42a" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lalin1622214@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set dynamic current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Typing animation
         const textArray = [
-            "Surveillance Operations Lead", 
-            "Central Control Room Expert", 
-            "Modern Web Designer", 
-            "Graphic & Video Creator", 
-            "B2B Workflow Specialist"
+            "Administrative Officer",
+            "Operations Executive",
+            "Multi-Site Operations Professional",
+            "Facility & Team Manager",
+            "Data & Advanced Excel Analyst"
         ];
         let textIndex = 0;
         let charIndex = 0;
@@ -329,7 +292,7 @@
             if (textArray.length) setTimeout(type, 1000);
         });
 
-        // Background Particles Canvas Animation (Services Page Logic with Connecting Lines)
+        // Canvas Background Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
