@@ -86,20 +86,16 @@
 
         .home-content p { font-size: 1.02rem; margin-bottom: 1.5rem; color: #d1d5db; line-height: 1.75; }
         
-        /* Modern Objective Box */
-        .objective-card {
-            background: rgba(0, 240, 255, 0.03);
-            border-left: 3px solid #00f0ff;
-            padding: 0.8rem 1.2rem;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            color: #e2e8f0;
+        .cv-highlights {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            font-size: 0.92rem;
+            color: #a0aec0;
         }
-        .objective-card i { color: #00f0ff; font-size: 1.2rem; }
+        .cv-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid rgba(0,240,255,0.1); }
+        .cv-item i { color: #00f0ff; }
 
         .btn-group { display: flex; gap: 1.2rem; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2.2rem; background: #00f0ff; border-radius: 30px; box-shadow: 0 0 18px rgba(0, 240, 255, 0.35); font-size: 1.05rem; color: #050b14; text-decoration: none; font-weight: 700; transition: 0.3s ease; border: 2px solid #00f0ff; }
@@ -154,8 +150,7 @@
             .header { padding: 0.8rem 4%; } 
             section { padding: 6.5rem 4% 3rem; } 
             .home { flex-direction: column-reverse; text-align: center; gap: 3rem; } 
-            .btn-group, .social-media, .hero-stats { justify-content: center; } 
-            .objective-card { text-align: left; }
+            .btn-group, .social-media, .hero-stats, .cv-highlights { justify-content: center; } 
             .img-box { width: 280px; height: 280px; }
         }
 
@@ -192,15 +187,16 @@
 
     <section class="home">
         <div class="home-content">
-            <div class="greeting-badge"><i class="fa-solid fa-bullseye"></i> CAREER OBJECTIVE</div>
+            <div class="greeting-badge"><i class="fa-solid fa-sparkles"></i> Official Portfolio</div>
             <h1>I'm <span>Ahad Ali Lelin</span></h1>
             <div class="typing-title">I am a <span id="typed-text"></span></div>
             
-            <p>Results-driven Operations & Administrative Professional with 7+ years of experience in multi-site operations, supervising large-scale teams (78+ staff), facility oversight, and data management. Seeking an Administrative Officer / Operations Executive role to leverage my analytical skills, leadership, and operational expertise to drive organizational efficiency.</p>
+            <p>Results-driven Operations & Administrative Professional with 7+ years of experience in multi-site operations, supervising 78+ staff, facility oversight, and data management. Seeking an Administrative Officer / Operations Executive role to leverage my analytical skills, leadership, and operational expertise to drive organizational efficiency.</p>
 
-            <div class="objective-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>Ready to optimize organizational workflow, multi-site logistics, and administrative performance.</span>
+            <div class="cv-highlights">
+                <div class="cv-item"><i class="fa-solid fa-user-shield"></i> VSO (OP) - United Group</div>
+                <div class="cv-item"><i class="fa-solid fa-graduation-cap"></i> MSS in Economics</div>
+                <div class="cv-item"><i class="fa-solid fa-keyboard"></i> Typing: 30 WPM (EN) / 25 WPM (BN)</div>
             </div>
             
             <div class="btn-group">
@@ -259,9 +255,12 @@
         const textArray = [
             "Administrative Officer",
             "Operations Executive",
-            "Multi-Site Operations Professional",
-            "Facility & Team Manager",
-            "Data & Advanced Excel Analyst"
+            "Operations & Admin Specialist",
+            "VSO (OP) - United Group",
+            "Central Control Room Expert",
+            "Data & Advanced Excel Analyst",
+            "Modern Web Designer",
+            "Graphic & Video Creator"
         ];
         let textIndex = 0;
         let charIndex = 0;
@@ -292,7 +291,7 @@
             if (textArray.length) setTimeout(type, 1000);
         });
 
-        // Canvas Background Animation
+        // Background Particles Canvas
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
