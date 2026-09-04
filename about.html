@@ -70,14 +70,8 @@
             position: relative;
             z-index: 1;
         }
-        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
+        .heading { font-size: 2.4rem; text-align: center; margin-bottom: 1.8rem; font-weight: 700; }
         .heading span { color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-        
-        /* Dynamic Typewriter Sub-heading */
-        .sub-heading { text-align: center; color: #a0aec0; margin-bottom: 1.5rem; font-size: 1.2rem; min-height: 1.8em; }
-        .typed-text { color: #00f0ff; font-weight: 600; }
-        .cursor { display: inline-block; width: 2px; background-color: #00f0ff; animation: blink 0.7s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* CTA Buttons Style */
         .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; margin-bottom: 3.5rem; }
@@ -292,9 +286,6 @@
     <!-- Main Content -->
     <main class="main-content">
         <h2 class="heading">About <span>Me</span></h2>
-        
-        <!-- Typewriter Animated Text -->
-        <p class="sub-heading">I'm a <span class="typed-text" id="typed-text"></span><span class="cursor">&nbsp;</span></p>
 
         <!-- CTA Buttons -->
         <div class="cta-buttons">
@@ -424,38 +415,6 @@
             navbar.classList.toggle('active');
             menuIcon.classList.toggle('fa-xmark');
         });
-
-        /* Dynamic Typewriter Effect - Exact Match with Home */
-        const words = ["Surveillance Lead", "IT Specialist", "Creative Visual Content Creator"];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typedTextElement = document.getElementById("typed-text");
-
-        function typeEffect() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedTextElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
-        document.addEventListener("DOMContentLoaded", typeEffect);
 
         /* Canvas Background Animation */
         const canvas = document.getElementById('bg-canvas');
