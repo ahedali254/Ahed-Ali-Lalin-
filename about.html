@@ -87,6 +87,17 @@
         .about-content h3 { font-size: 1.6rem; color: #00f0ff; margin-bottom: 1rem; }
         .about-content p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1rem; }
 
+        /* [NEW STYLING] Philosophy Quote Block */
+        .philosophy-quote {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            border-left: 3px solid #00f0ff;
+            background: rgba(0, 240, 255, 0.03);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -100,6 +111,12 @@
             padding: 1.5rem;
             border-radius: 12px;
             backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .info-box:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-3px);
         }
 
         .info-box h4 {
@@ -272,11 +289,19 @@
         <h2 class="heading">About <span>Me</span></h2>
         <p class="sub-heading">Surveillance Lead, IT Specialist, and Creative Visual Content Creator</p>
 
+        <!-- Who I Am & My Philosophy -->
         <div class="about-content">
             <h3>Who I Am</h3>
             <p>I am Ahad Ali Lelin, a multi-skilled professional bridging the gap between technical operations and creative media. My expertise spans Surveillance Operations Management, Central Control Room Architecture, and B2B Digital Workflows—complemented by strong capabilities in Modern Web Design, Photoshop & Visual Graphics, Professional Presentation Design, and Video Post-Production.</p>
+            
+            <!-- [NEW ADDITION] My Philosophy Block -->
+            <div class="philosophy-quote">
+                <i class="fa-solid fa-quote-left" style="color: #00f0ff; margin-right: 0.5rem;"></i>
+                I believe in blending technical precision with creative expression—respecting workflows, maintaining discipline, and crafting solutions that speak for themselves.
+            </div>
         </div>
 
+        <!-- Info Grid (Existing Core Competencies) -->
         <div class="info-grid">
             <div class="info-box">
                 <h4><i class="fa-solid fa-layer-group"></i> Surveillance & Operations</h4>
@@ -292,6 +317,25 @@
             </div>
         </div>
 
+        <!-- [NEW ADDITION] Core Strengths / Highlights Section -->
+        <h3 class="skills-heading">Core <span>Highlights</span></h3>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h4><i class="fa-solid fa-chart-line"></i> Data-Driven Approach</h4>
+                <p>Applying spreadsheet modeling and logical data analytics to streamline complex operational tasks and decision-making.</p>
+            </div>
+            <div class="info-box">
+                <h4><i class="fa-solid fa-bullseye"></i> Attention to Detail</h4>
+                <p>Ensuring precision across all projects, from high-security surveillance architectures to fine art concepts and graphics.</p>
+            </div>
+            <div class="info-box">
+                <h4><i class="fa-solid fa-brain"></i> Dual Expertise</h4>
+                <p>Seamlessly combining technical IT infrastructure management with artistic visual storytelling and design.</p>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
         <h3 class="skills-heading">Technical & <span>Creative Skills</span></h3>
 
         <div class="skills-grid">
